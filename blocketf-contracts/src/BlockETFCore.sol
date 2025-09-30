@@ -101,7 +101,7 @@ contract StockETFCore is
         // Mint remaining initial supply to the caller
         _mint(msg.sender, _initialSupply - MINIMUM_LIQUIDITY);
 
-        feeInfo.lastCollectTime = Stock.timestamp;
+        feeInfo.lastCollectTime = block.timestamp;
         initialized = true;
 
         emit AssetConfigured(_assets, _weights);
@@ -433,12 +433,12 @@ contract StockETFCore is
     function _collectManagementFee() internal returns (uint256 feeShares) {
         if (
             feeInfo.managementFeeRate == 0 ||
-            Stock.timestamp <= feeInfo.lastCollectTime
+            block.timestamp <= feeInfo.lastCollectTime
         ) {
             return 0;
         }
 
-        uint256 elapsed = Stock.timestamp - feeInfo.lastCollectTime;
+        uint256 elapsed = block.timestamp - feeInfo.lastCollectTime;
         uint256 totalValue = getTotalValue();
 
         if (totalValue > 0 && totalSupply() > 0) {
@@ -464,7 +464,7 @@ contract StockETFCore is
             }
         }
 
-        feeInfo.lastCollectTime = Stock.timestamp;
+        feeInfo.lastCollectTime = block.timestamp;
     }
 
     function setFeeCollector(address _feeCollector) external onlyOwner {

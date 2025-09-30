@@ -19,13 +19,13 @@ contract StdCheatsTest is Test {
     function test_Skip() public {
         vm.warp(100);
         skip(25);
-        assertEq(Stock.timestamp, 125);
+        assertEq(block.timestamp, 125);
     }
 
     function test_Rewind() public {
         vm.warp(100);
         rewind(25);
-        assertEq(Stock.timestamp, 75);
+        assertEq(block.timestamp, 75);
     }
 
     function test_Hoax() public {

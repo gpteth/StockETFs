@@ -105,7 +105,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
         uint256 minShares,
         uint256 deadline
     ) external override whenNotPaused nonReentrant returns (uint256 shares) {
-        require(Stock.timestamp <= deadline, "Router: EXPIRED");
+        require(block.timestamp <= deadline, "Router: EXPIRED");
         require(usdtAmount > 0, "Router: ZERO_AMOUNT");
 
         // Transfer USDT from user
@@ -164,7 +164,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
         uint256 minUSDT,
         uint256 deadline
     ) external override whenNotPaused nonReentrant returns (uint256 usdtAmount) {
-        require(Stock.timestamp <= deadline, "Router: EXPIRED");
+        require(block.timestamp <= deadline, "Router: EXPIRED");
         require(shares > 0, "Router: ZERO_SHARES");
 
         // Transfer ETF shares from user

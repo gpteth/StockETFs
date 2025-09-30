@@ -4,3 +4,6 @@
 [submodule "Stocketf-contracts/lib/openzeppelin-contracts"]
 	path = Stocketf-contracts/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "blocketf-contracts/lib/chainlink-brownie-contracts"]
+	path = blocketf-contracts/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
