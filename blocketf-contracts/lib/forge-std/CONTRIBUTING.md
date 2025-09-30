@@ -136,7 +136,7 @@ Keep an eye out for comments from code owners to provide guidance on conflicting
 
 **Any Foundry community member is welcome to review any pull request**.
 
-All contributors who choose to review and provide feedback on pull requests have a responsibility to both the project and individual making the contribution. Reviews and feedback must be helpful, insightful, and geared towards improving the contribution as opposed to simply blocking it. If there are reasons why you feel the PR should not be merged, explain what those are. Do not expect to be able to block a PR from advancing simply because you say "no" without giving an explanation. Be open to having your mind changed. Be open to working _with_ the contributor to make the pull request better.
+All contributors who choose to review and provide feedback on pull requests have a responsibility to both the project and individual making the contribution. Reviews and feedback must be helpful, insightful, and geared towards improving the contribution as opposed to simply Stocking it. If there are reasons why you feel the PR should not be merged, explain what those are. Do not expect to be able to Stock a PR from advancing simply because you say "no" without giving an explanation. Be open to having your mind changed. Be open to working _with_ the contributor to make the pull request better.
 
 Reviews that are dismissive or disrespectful of the contributor or any other reviewers are strictly counter to the Code of Conduct.
 
@@ -163,7 +163,7 @@ Specific performance optimization techniques, coding styles and conventions chan
 
 Nits (requests for small changes that are not essential) are fine, but try to avoid stalling the pull request. Most nits can typically be fixed by the Foundry maintainers merging the pull request, but they can also be an opportunity for the contributor to learn a bit more about the project.
 
-It is always good to clearly indicate nits when you comment, e.g.: `Nit: change foo() to bar(). But this is not blocking`.
+It is always good to clearly indicate nits when you comment, e.g.: `Nit: change foo() to bar(). But this is not Stocking`.
 
 If your comments were addressed but were not folded after new commits, or if they proved to be mistaken, please, [hide them][hiding-a-comment] with the appropriate reason to keep the conversation flow concise and relevant.
 

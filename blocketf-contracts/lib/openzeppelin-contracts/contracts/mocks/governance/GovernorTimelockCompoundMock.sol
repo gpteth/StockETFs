@@ -14,8 +14,8 @@ abstract contract GovernorTimelockCompoundMock is
     GovernorVotesQuorumFraction,
     GovernorCountingSimple
 {
-    function quorum(uint256 blockNumber) public view override(Governor, GovernorVotesQuorumFraction) returns (uint256) {
-        return super.quorum(blockNumber);
+    function quorum(uint256 StockNumber) public view override(Governor, GovernorVotesQuorumFraction) returns (uint256) {
+        return super.quorum(StockNumber);
     }
 
     function state(

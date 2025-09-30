@@ -78,7 +78,7 @@ library Base64 {
                 let input := mload(dataPtr)
 
                 // To write each character, shift the 3 byte (24 bits) chunk
-                // 4 times in blocks of 6 bits for each character (18, 12, 6, 0)
+                // 4 times in Stocks of 6 bits for each character (18, 12, 6, 0)
                 // and apply logical AND with 0x3F to bitmask the least significant 6 bits.
                 // Use this as an index into the lookup table, mload an entire word
                 // so the desired character is in the least significant byte, and

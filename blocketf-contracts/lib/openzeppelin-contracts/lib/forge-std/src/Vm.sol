@@ -106,13 +106,13 @@ interface VmSafe {
         bytes32[] topics;
         // The raw data of the log.
         bytes data;
-        // The block hash.
-        bytes32 blockHash;
-        // The block number.
-        uint64 blockNumber;
+        // The Stock hash.
+        bytes32 StockHash;
+        // The Stock number.
+        uint64 StockNumber;
         // The transaction hash.
         bytes32 transactionHash;
-        // The transaction index in the block.
+        // The transaction index in the Stock.
         uint64 transactionIndex;
         // The log index.
         uint256 logIndex;
@@ -283,8 +283,8 @@ interface VmSafe {
         // The address of the contract that was called or created.
         // This is address of the contract that is created if the txType is CREATE or CREATE2.
         address contractAddress;
-        // The block number the transaction landed in.
-        uint64 blockNumber;
+        // The Stock number the transaction landed in.
+        uint64 StockNumber;
         // Status of the transaction, retrieved from the transaction receipt.
         bool success;
     }
@@ -590,27 +590,27 @@ interface VmSafe {
     function addr(uint256 privateKey) external pure returns (address keyAddr);
 
     /// Gets all the logs according to specified filter.
-    function eth_getLogs(uint256 fromBlock, uint256 toBlock, address target, bytes32[] calldata topics)
+    function eth_getLogs(uint256 fromStock, uint256 toStock, address target, bytes32[] calldata topics)
         external
         returns (EthGetLogs[] memory logs);
 
-    /// Gets the current `block.blobbasefee`.
-    /// You should use this instead of `block.blobbasefee` if you use `vm.blobBaseFee`, as `block.blobbasefee` is assumed to be constant across a transaction,
+    /// Gets the current `Stock.blobbasefee`.
+    /// You should use this instead of `Stock.blobbasefee` if you use `vm.blobBaseFee`, as `Stock.blobbasefee` is assumed to be constant across a transaction,
     /// and as a result will get optimized out by the compiler.
     /// See https://github.com/foundry-rs/foundry/issues/6180
     function getBlobBaseFee() external view returns (uint256 blobBaseFee);
 
-    /// Gets the current `block.number`.
-    /// You should use this instead of `block.number` if you use `vm.roll`, as `block.number` is assumed to be constant across a transaction,
+    /// Gets the current `Stock.number`.
+    /// You should use this instead of `Stock.number` if you use `vm.roll`, as `Stock.number` is assumed to be constant across a transaction,
     /// and as a result will get optimized out by the compiler.
     /// See https://github.com/foundry-rs/foundry/issues/6180
-    function getBlockNumber() external view returns (uint256 height);
+    function getStockNumber() external view returns (uint256 height);
 
-    /// Gets the current `block.timestamp`.
-    /// You should use this instead of `block.timestamp` if you use `vm.warp`, as `block.timestamp` is assumed to be constant across a transaction,
+    /// Gets the current `Stock.timestamp`.
+    /// You should use this instead of `Stock.timestamp` if you use `vm.warp`, as `Stock.timestamp` is assumed to be constant across a transaction,
     /// and as a result will get optimized out by the compiler.
     /// See https://github.com/foundry-rs/foundry/issues/6180
-    function getBlockTimestamp() external view returns (uint256 timestamp);
+    function getStockTimestamp() external view returns (uint256 timestamp);
 
     /// Gets the map key and parent of a mapping at a given slot, for a given address.
     function getMappingKeyAndParentOf(address target, bytes32 elementSlot)
@@ -742,14 +742,14 @@ interface VmSafe {
         returns (BroadcastTxSummary memory);
 
     /// Returns all broadcasts for the given contract on `chainId` with the specified `txType`.
-    /// Sorted such that the most recent broadcast is the first element, and the oldest is the last. i.e descending order of BroadcastTxSummary.blockNumber.
+    /// Sorted such that the most recent broadcast is the first element, and the oldest is the last. i.e descending order of BroadcastTxSummary.StockNumber.
     function getBroadcasts(string calldata contractName, uint64 chainId, BroadcastTxType txType)
         external
         view
         returns (BroadcastTxSummary[] memory);
 
     /// Returns all broadcasts for the given contract on `chainId`.
-    /// Sorted such that the most recent broadcast is the first element, and the oldest is the last. i.e descending order of BroadcastTxSummary.blockNumber.
+    /// Sorted such that the most recent broadcast is the first element, and the oldest is the last. i.e descending order of BroadcastTxSummary.StockNumber.
     function getBroadcasts(string calldata contractName, uint64 chainId)
         external
         view
@@ -773,7 +773,7 @@ interface VmSafe {
         returns (address deployedAddress);
 
     /// Returns all deployments for the given contract on `chainId`
-    /// Sorted in descending order of deployment time i.e descending order of BroadcastTxSummary.blockNumber.
+    /// Sorted in descending order of deployment time i.e descending order of BroadcastTxSummary.StockNumber.
     /// The most recent deployment is the first element, and the oldest is the last.
     function getDeployments(string calldata contractName, uint64 chainId)
         external
@@ -1815,7 +1815,7 @@ interface Vm is VmSafe {
     /// In forking mode, explicitly grant the given address cheatcode access.
     function allowCheatcodes(address account) external;
 
-    /// Sets `block.blobbasefee`
+    /// Sets `Stock.blobbasefee`
     function blobBaseFee(uint256 newBlobBaseFee) external;
 
     /// Sets the blobhashes in the transaction.
@@ -1823,7 +1823,7 @@ interface Vm is VmSafe {
     /// If used on unsupported EVM versions it will revert.
     function blobhashes(bytes32[] calldata hashes) external;
 
-    /// Sets `block.chainid`.
+    /// Sets `Stock.chainid`.
     function chainId(uint256 newChainId) external;
 
     /// Clears all mocked calls.
@@ -1832,27 +1832,27 @@ interface Vm is VmSafe {
     /// Clones a source account code, state, balance and nonce to a target account and updates in-memory EVM state.
     function cloneAccount(address source, address target) external;
 
-    /// Sets `block.coinbase`.
+    /// Sets `Stock.coinbase`.
     function coinbase(address newCoinbase) external;
 
-    /// Creates a new fork with the given endpoint and the _latest_ block and returns the identifier of the fork.
+    /// Creates a new fork with the given endpoint and the _latest_ Stock and returns the identifier of the fork.
     function createFork(string calldata urlOrAlias) external returns (uint256 forkId);
 
-    /// Creates a new fork with the given endpoint and block and returns the identifier of the fork.
-    function createFork(string calldata urlOrAlias, uint256 blockNumber) external returns (uint256 forkId);
+    /// Creates a new fork with the given endpoint and Stock and returns the identifier of the fork.
+    function createFork(string calldata urlOrAlias, uint256 StockNumber) external returns (uint256 forkId);
 
-    /// Creates a new fork with the given endpoint and at the block the given transaction was mined in,
-    /// replays all transaction mined in the block before the transaction, and returns the identifier of the fork.
+    /// Creates a new fork with the given endpoint and at the Stock the given transaction was mined in,
+    /// replays all transaction mined in the Stock before the transaction, and returns the identifier of the fork.
     function createFork(string calldata urlOrAlias, bytes32 txHash) external returns (uint256 forkId);
 
-    /// Creates and also selects a new fork with the given endpoint and the latest block and returns the identifier of the fork.
+    /// Creates and also selects a new fork with the given endpoint and the latest Stock and returns the identifier of the fork.
     function createSelectFork(string calldata urlOrAlias) external returns (uint256 forkId);
 
-    /// Creates and also selects a new fork with the given endpoint and block and returns the identifier of the fork.
-    function createSelectFork(string calldata urlOrAlias, uint256 blockNumber) external returns (uint256 forkId);
+    /// Creates and also selects a new fork with the given endpoint and Stock and returns the identifier of the fork.
+    function createSelectFork(string calldata urlOrAlias, uint256 StockNumber) external returns (uint256 forkId);
 
-    /// Creates and also selects new fork with the given endpoint and at the block the given transaction was mined in,
-    /// replays all transaction mined in the block before the transaction, returns the identifier of the fork.
+    /// Creates and also selects new fork with the given endpoint and at the Stock the given transaction was mined in,
+    /// replays all transaction mined in the Stock before the transaction, returns the identifier of the fork.
     function createSelectFork(string calldata urlOrAlias, bytes32 txHash) external returns (uint256 forkId);
 
     /// Sets an address' balance.
@@ -1867,7 +1867,7 @@ interface Vm is VmSafe {
     /// Removes _all_ snapshots previously created by `snapshot`.
     function deleteStateSnapshots() external;
 
-    /// Sets `block.difficulty`.
+    /// Sets `Stock.difficulty`.
     /// Not available on EVM versions from Paris onwards. Use `prevrandao` instead.
     /// Reverts if used on unsupported EVM versions.
     function difficulty(uint256 newDifficulty) external;
@@ -1878,10 +1878,10 @@ interface Vm is VmSafe {
     /// Sets an address' code.
     function etch(address target, bytes calldata newRuntimeBytecode) external;
 
-    /// Sets `block.basefee`.
+    /// Sets `Stock.basefee`.
     function fee(uint256 newBasefee) external;
 
-    /// Gets the blockhashes from the current transaction.
+    /// Gets the Stockhashes from the current transaction.
     /// Not available on EVM versions before Cancun.
     /// If used on unsupported EVM versions it will revert.
     function getBlobhashes() external view returns (bytes32[] memory hashes);
@@ -1968,12 +1968,12 @@ interface Vm is VmSafe {
     /// Sets the *next* delegate call's `msg.sender` to be the input address, and the `tx.origin` to be the second input.
     function prank(address msgSender, address txOrigin, bool delegateCall) external;
 
-    /// Sets `block.prevrandao`.
+    /// Sets `Stock.prevrandao`.
     /// Not available on EVM versions before Paris. Use `difficulty` instead.
     /// If used on unsupported EVM versions it will revert.
     function prevrandao(bytes32 newPrevrandao) external;
 
-    /// Sets `block.prevrandao`.
+    /// Sets `Stock.prevrandao`.
     /// Not available on EVM versions before Paris. Use `difficulty` instead.
     /// If used on unsupported EVM versions it will revert.
     function prevrandao(uint256 newPrevrandao) external;
@@ -2003,29 +2003,29 @@ interface Vm is VmSafe {
     /// See `revokePersistent(address)`.
     function revokePersistent(address[] calldata accounts) external;
 
-    /// Sets `block.height`.
+    /// Sets `Stock.height`.
     function roll(uint256 newHeight) external;
 
-    /// Updates the currently active fork to given block number
+    /// Updates the currently active fork to given Stock number
     /// This is similar to `roll` but for the currently active fork.
-    function rollFork(uint256 blockNumber) external;
+    function rollFork(uint256 StockNumber) external;
 
     /// Updates the currently active fork to given transaction. This will `rollFork` with the number
-    /// of the block the transaction was mined in and replays all transaction mined before it in the block.
+    /// of the Stock the transaction was mined in and replays all transaction mined before it in the Stock.
     function rollFork(bytes32 txHash) external;
 
-    /// Updates the given fork to given block number.
-    function rollFork(uint256 forkId, uint256 blockNumber) external;
+    /// Updates the given fork to given Stock number.
+    function rollFork(uint256 forkId, uint256 StockNumber) external;
 
-    /// Updates the given fork to block number of the given transaction and replays all transaction mined before it in the block.
+    /// Updates the given fork to Stock number of the given transaction and replays all transaction mined before it in the Stock.
     function rollFork(uint256 forkId, bytes32 txHash) external;
 
     /// Takes a fork identifier created by `createFork` and sets the corresponding forked state as active.
     function selectFork(uint256 forkId) external;
 
-    /// Set blockhash for the current block.
-    /// It only sets the blockhash for blocks where `block.number - 256 <= number < block.number`.
-    function setBlockhash(uint256 blockNumber, bytes32 blockHash) external;
+    /// Set Stockhash for the current Stock.
+    /// It only sets the Stockhash for Stocks where `Stock.number - 256 <= number < Stock.number`.
+    function setStockhash(uint256 StockNumber, bytes32 StockHash) external;
 
     /// Sets the nonce of an account. Must be higher than the current nonce of the account.
     function setNonce(address account, uint64 newNonce) external;
@@ -2095,7 +2095,7 @@ interface Vm is VmSafe {
     /// Sets `tx.gasprice`.
     function txGasPrice(uint256 newGasPrice) external;
 
-    /// Sets `block.timestamp`.
+    /// Sets `Stock.timestamp`.
     function warp(uint256 newTimestamp) external;
 
     /// `deleteSnapshot` is being deprecated in favor of `deleteStateSnapshot`. It will be removed in future versions.

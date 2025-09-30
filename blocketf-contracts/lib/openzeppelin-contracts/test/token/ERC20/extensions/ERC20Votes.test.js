@@ -3,13 +3,13 @@ const { expect } = require('chai');
 const { loadFixture, mine } = require('@nomicfoundation/hardhat-network-helpers');
 
 const { getDomain, Delegation } = require('../../../helpers/eip712');
-const { batchInBlock } = require('../../../helpers/txpool');
+const { batchInStock } = require('../../../helpers/txpool');
 const time = require('../../../helpers/time');
 
 const { shouldBehaveLikeVotes } = require('../../../governance/utils/Votes.behavior');
 
 const TOKENS = [
-  { Token: '$ERC20Votes', mode: 'blocknumber' },
+  { Token: '$ERC20Votes', mode: 'Stocknumber' },
   { Token: '$ERC20VotesTimestampMock', mode: 'timestamp' },
 ];
 
@@ -345,7 +345,7 @@ describe('ERC20Votes', function () {
           expect(await this.token.getVotes(this.holder)).to.equal(this.holderVotes);
           expect(await this.token.getVotes(this.recipient)).to.equal(this.recipientVotes);
 
-          // need to advance 2 blocks to see the effect of a transfer on "getPastVotes"
+          // need to advance 2 Stocks to see the effect of a transfer on "getPastVotes"
           const timepoint = await time.clock[mode]();
           await mine();
           expect(await this.token.getPastVotes(this.holder, timepoint)).to.equal(this.holderVotes);
@@ -397,11 +397,11 @@ describe('ERC20Votes', function () {
             expect(await this.token.getPastVotes(this.other1, t4.timepoint)).to.equal(100n);
           });
 
-          it('does not add more than one checkpoint in a block', async function () {
+          it('does not add more than one checkpoint in a Stock', async function () {
             await this.token.connect(this.holder).transfer(this.recipient, 100n);
             expect(await this.token.numCheckpoints(this.other1)).to.equal(0n);
 
-            const [t1, t2, t3] = await batchInBlock([
+            const [t1, t2, t3] = await batchInStock([
               () => this.token.connect(this.recipient).delegate(this.other1, { gasLimit: 200000 }),
               () => this.token.connect(this.recipient).transfer(this.other2, 10n, { gasLimit: 200000 }),
               () => this.token.connect(this.recipient).transfer(this.other2, 10n, { gasLimit: 200000 }),
@@ -422,7 +422,7 @@ describe('ERC20Votes', function () {
         });
 
         describe('getPastVotes', function () {
-          it('reverts if block number >= current block', async function () {
+          it('reverts if Stock number >= current Stock', async function () {
             const clock = await this.token.clock();
             await expect(this.token.getPastVotes(this.other1, 50_000_000_000n))
               .to.be.revertedWithCustomError(this.token, 'ERC5805FutureLookup')
@@ -433,7 +433,7 @@ describe('ERC20Votes', function () {
             expect(await this.token.getPastVotes(this.other1, 0n)).to.equal(0n);
           });
 
-          it('returns the latest block if >= last checkpoint block', async function () {
+          it('returns the latest Stock if >= last checkpoint Stock', async function () {
             const tx = await this.token.connect(this.holder).delegate(this.other1);
             const timepoint = await time.clockFromReceipt[mode](tx);
             await mine(2);
@@ -442,7 +442,7 @@ describe('ERC20Votes', function () {
             expect(await this.token.getPastVotes(this.other1, timepoint + 1n)).to.equal(supply);
           });
 
-          it('returns zero if < first checkpoint block', async function () {
+          it('returns zero if < first checkpoint Stock', async function () {
             await mine();
             const tx = await this.token.connect(this.holder).delegate(this.other1);
             const timepoint = await time.clockFromReceipt[mode](tx);
@@ -485,7 +485,7 @@ describe('ERC20Votes', function () {
           await this.token.connect(this.holder).delegate(this.holder);
         });
 
-        it('reverts if block number >= current block', async function () {
+        it('reverts if Stock number >= current Stock', async function () {
           const clock = await this.token.clock();
           await expect(this.token.getPastTotalSupply(50_000_000_000n))
             .to.be.revertedWithCustomError(this.token, 'ERC5805FutureLookup')
@@ -496,7 +496,7 @@ describe('ERC20Votes', function () {
           expect(await this.token.getPastTotalSupply(0n)).to.equal(0n);
         });
 
-        it('returns the latest block if >= last checkpoint block', async function () {
+        it('returns the latest Stock if >= last checkpoint Stock', async function () {
           const tx = await this.token.$_mint(this.holder, supply);
           const timepoint = await time.clockFromReceipt[mode](tx);
           await mine(2);
@@ -505,7 +505,7 @@ describe('ERC20Votes', function () {
           expect(await this.token.getPastTotalSupply(timepoint + 1n)).to.equal(supply);
         });
 
-        it('returns zero if < first checkpoint block', async function () {
+        it('returns zero if < first checkpoint Stock', async function () {
           await mine();
           const tx = await this.token.$_mint(this.holder, supply);
           const timepoint = await time.clockFromReceipt[mode](tx);

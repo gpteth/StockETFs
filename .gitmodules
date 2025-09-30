@@ -1,6 +1,6 @@
-[submodule "blocketf-contracts/lib/forge-std"]
-	path = blocketf-contracts/lib/forge-std
+[submodule "Stocketf-contracts/lib/forge-std"]
+	path = Stocketf-contracts/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "blocketf-contracts/lib/openzeppelin-contracts"]
-	path = blocketf-contracts/lib/openzeppelin-contracts
+[submodule "Stocketf-contracts/lib/openzeppelin-contracts"]
+	path = Stocketf-contracts/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts

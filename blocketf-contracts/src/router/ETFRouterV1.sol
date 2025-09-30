@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 import "../interfaces/IETFRouterV1.sol";
-import "../interfaces/IBlockETFCore.sol";
+import "../interfaces/IStockETFCore.sol";
 import "../interfaces/ISwapRouter.sol";
 import "../interfaces/IQuoterV2.sol";
 import "../interfaces/IPancakeV3Pool.sol";
@@ -27,7 +27,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
     uint24 private constant FEE_HIGH = 10000; // 1%
 
     // Core contracts
-    IBlockETFCore public immutable etfCore;
+    IStockETFCore public immutable etfCore;
     ISwapRouter public immutable swapRouter;
     IQuoterV2 public immutable quoter;
     IPriceOracle public immutable priceOracle;
@@ -56,7 +56,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
         address _usdt,
         address _wbnb
     ) Ownable(msg.sender) {
-        etfCore = IBlockETFCore(_etfCore);
+        etfCore = IStockETFCore(_etfCore);
         swapRouter = ISwapRouter(_swapRouter);
         quoter = IQuoterV2(_quoter);
         priceOracle = IPriceOracle(_priceOracle);
@@ -69,7 +69,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
      * @notice Get ETF assets from core contract
      */
     function _getETFAssets() private view returns (address[] memory) {
-        IBlockETFCore.AssetInfo[] memory assets = etfCore.getAssets();
+        IStockETFCore.AssetInfo[] memory assets = etfCore.getAssets();
         address[] memory tokens = new address[](assets.length);
         for (uint256 i = 0; i < assets.length; i++) {
             tokens[i] = assets[i].token;
@@ -105,7 +105,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
         uint256 minShares,
         uint256 deadline
     ) external override whenNotPaused nonReentrant returns (uint256 shares) {
-        require(block.timestamp <= deadline, "Router: EXPIRED");
+        require(Stock.timestamp <= deadline, "Router: EXPIRED");
         require(usdtAmount > 0, "Router: ZERO_AMOUNT");
 
         // Transfer USDT from user
@@ -164,7 +164,7 @@ contract ETFRouterV1 is IETFRouterV1, Ownable, Pausable, ReentrancyGuard {
         uint256 minUSDT,
         uint256 deadline
     ) external override whenNotPaused nonReentrant returns (uint256 usdtAmount) {
-        require(block.timestamp <= deadline, "Router: EXPIRED");
+        require(Stock.timestamp <= deadline, "Router: EXPIRED");
         require(shares > 0, "Router: ZERO_SHARES");
 
         // Transfer ETF shares from user

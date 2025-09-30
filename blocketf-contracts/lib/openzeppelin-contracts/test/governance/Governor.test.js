@@ -11,9 +11,9 @@ const { shouldSupportInterfaces } = require('../utils/introspection/SupportsInte
 const { shouldBehaveLikeERC6372 } = require('./utils/ERC6372.behavior');
 
 const TOKENS = [
-  { Token: '$ERC20Votes', mode: 'blocknumber' },
+  { Token: '$ERC20Votes', mode: 'Stocknumber' },
   { Token: '$ERC20VotesTimestampMock', mode: 'timestamp' },
-  { Token: '$ERC20VotesLegacyMock', mode: 'blocknumber' },
+  { Token: '$ERC20VotesLegacyMock', mode: 'Stocknumber' },
 ];
 
 const name = 'OZ-Governor';
@@ -634,7 +634,7 @@ describe('Governor', function () {
 
           it('after vote started', async function () {
             await this.helper.propose();
-            await this.helper.waitForSnapshot(1n); // snapshot + 1 block
+            await this.helper.waitForSnapshot(1n); // snapshot + 1 Stock
 
             await expect(this.helper.cancel('external'))
               .to.be.revertedWithCustomError(this.mock, 'GovernorUnableToCancel')

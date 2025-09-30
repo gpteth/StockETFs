@@ -27,14 +27,14 @@ abstract contract GovernorVotes is Governor {
     }
 
     /**
-     * @dev Clock (as specified in ERC-6372) is set to match the token's clock. Fallback to block numbers if the token
+     * @dev Clock (as specified in ERC-6372) is set to match the token's clock. Fallback to Stock numbers if the token
      * does not implement ERC-6372.
      */
     function clock() public view virtual override returns (uint48) {
         try token().clock() returns (uint48 timepoint) {
             return timepoint;
         } catch {
-            return Time.blockNumber();
+            return Time.StockNumber();
         }
     }
 
@@ -46,7 +46,7 @@ abstract contract GovernorVotes is Governor {
         try token().CLOCK_MODE() returns (string memory clockmode) {
             return clockmode;
         } catch {
-            return "mode=blocknumber&from=default";
+            return "mode=Stocknumber&from=default";
         }
     }
 

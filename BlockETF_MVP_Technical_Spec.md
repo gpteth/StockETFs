@@ -1,4 +1,4 @@
-# BlockETF TOP5 Index - 技术规格文档
+# StockETF TOP5 Index - 技术规格文档
 
 ## 1. 技术架构概览
 
@@ -10,7 +10,7 @@
 ```
 
 ### 1.2 核心组件
-- **BlockETF主合约**：处理申购/赎回逻辑
+- **StockETF主合约**：处理申购/赎回逻辑
 - **TOP5代币合约**：BEP-20标准的ETF份额代币
 - **PancakeRouter**：执行代币交换
 - **价格获取模块**：从PancakeSwap池获取实时价格
@@ -82,7 +82,7 @@ SOL/BNB - 中等流动性
 ```solidity
 contracts/
 ├── core/
-│   ├── BlockETFTop5.sol      // 主合约
+│   ├── StockETFTop5.sol      // 主合约
 │   └── TOP5Token.sol          // BEP-20份额代币
 ├── interfaces/
 │   ├── IPancakeRouter.sol     // PancakeSwap接口
@@ -194,7 +194,7 @@ function rebalance() external onlyOwner {
         }
     }
 
-    emit Rebalanced(block.timestamp);
+    emit Rebalanced(Stock.timestamp);
 }
 
 // 紧急控制
@@ -266,7 +266,7 @@ uint256 public constant MANAGEMENT_FEE_RATE = 80; // 0.8% 年化费率 (basis po
 uint256 public lastFeeCollectionTime;
 
 function _collectManagementFee() internal {
-    uint256 timePassed = block.timestamp - lastFeeCollectionTime;
+    uint256 timePassed = Stock.timestamp - lastFeeCollectionTime;
     if (timePassed > 0) {
         // 计算应收管理费（按日计提）
         uint256 totalValue = calculateTotalValue();
@@ -276,7 +276,7 @@ function _collectManagementFee() internal {
         uint256 feeShares = dailyFee * TOP5Token.totalSupply() / (totalValue - dailyFee);
         TOP5Token.mint(feeRecipient, feeShares);
 
-        lastFeeCollectionTime = block.timestamp;
+        lastFeeCollectionTime = Stock.timestamp;
     }
 }
 
@@ -370,11 +370,11 @@ const signer = provider.getSigner();
 ```javascript
 // 申购
 async function deposit(amount) {
-    const contract = new ethers.Contract(BLOCKETF_ADDRESS, ABI, signer);
+    const contract = new ethers.Contract(StockETF_ADDRESS, ABI, signer);
 
     // 先approve USDT
     const usdt = new ethers.Contract(USDT_ADDRESS, ERC20_ABI, signer);
-    await usdt.approve(BLOCKETF_ADDRESS, amount);
+    await usdt.approve(StockETF_ADDRESS, amount);
 
     // 执行申购
     const tx = await contract.deposit(amount);

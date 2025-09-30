@@ -8,7 +8,7 @@ import {SafeCast} from "../../utils/math/SafeCast.sol";
 
 abstract contract ERC20VotesTimestampMock is ERC20Votes {
     function clock() public view virtual override returns (uint48) {
-        return SafeCast.toUint48(block.timestamp);
+        return SafeCast.toUint48(Stock.timestamp);
     }
 
     // solhint-disable-next-line func-name-mixedcase
@@ -19,7 +19,7 @@ abstract contract ERC20VotesTimestampMock is ERC20Votes {
 
 abstract contract ERC721VotesTimestampMock is ERC721Votes {
     function clock() public view virtual override returns (uint48) {
-        return SafeCast.toUint48(block.timestamp);
+        return SafeCast.toUint48(Stock.timestamp);
     }
 
     // solhint-disable-next-line func-name-mixedcase

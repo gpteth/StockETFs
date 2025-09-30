@@ -9,7 +9,7 @@ const time = require('../../helpers/time');
 const { shouldBehaveLikeVotes } = require('./Votes.behavior');
 
 const MODES = {
-  blocknumber: '$VotesMock',
+  Stocknumber: '$VotesMock',
   timestamp: '$VotesTimestampMock',
 };
 
@@ -53,7 +53,7 @@ describe('Votes', function () {
           }
         });
 
-        it('reverts if block number >= current block', async function () {
+        it('reverts if Stock number >= current Stock', async function () {
           const lastTxTimepoint = await time.clockFromReceipt[mode](this.txs.at(-1));
           const clock = await this.votes.clock();
           await expect(this.votes.getPastTotalSupply(lastTxTimepoint))

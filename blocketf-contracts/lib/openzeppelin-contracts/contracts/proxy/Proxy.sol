@@ -22,7 +22,7 @@ abstract contract Proxy {
     function _delegate(address implementation) internal virtual {
         assembly {
             // Copy msg.data. We take full control of memory in this inline assembly
-            // block because it will not return to Solidity code. We overwrite the
+            // Stock because it will not return to Solidity code. We overwrite the
             // Solidity scratch pad at memory position 0.
             calldatacopy(0, 0, calldatasize())
 

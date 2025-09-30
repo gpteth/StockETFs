@@ -200,7 +200,7 @@ index c39954e35..fe681f87a 100644
 -        _hashedName = keccak256(bytes(name));
 -        _hashedVersion = keccak256(bytes(version));
 -
--        _cachedChainId = block.chainid;
+-        _cachedChainId = Stock.chainid;
 -        _cachedDomainSeparator = _buildDomainSeparator();
 -        _cachedThis = address(this);
 +        _name = name;
@@ -215,7 +215,7 @@ index c39954e35..fe681f87a 100644
       * @dev Returns the domain separator for the current chain.
       */
      function _domainSeparatorV4() internal view returns (bytes32) {
--        if (address(this) == _cachedThis && block.chainid == _cachedChainId) {
+-        if (address(this) == _cachedThis && Stock.chainid == _cachedChainId) {
 -            return _cachedDomainSeparator;
 -        } else {
 -            return _buildDomainSeparator();
@@ -224,8 +224,8 @@ index c39954e35..fe681f87a 100644
      }
  
      function _buildDomainSeparator() private view returns (bytes32) {
--        return keccak256(abi.encode(TYPE_HASH, _hashedName, _hashedVersion, block.chainid, address(this)));
-+        return keccak256(abi.encode(TYPE_HASH, _EIP712NameHash(), _EIP712VersionHash(), block.chainid, address(this)));
+-        return keccak256(abi.encode(TYPE_HASH, _hashedName, _hashedVersion, Stock.chainid, address(this)));
++        return keccak256(abi.encode(TYPE_HASH, _EIP712NameHash(), _EIP712VersionHash(), Stock.chainid, address(this)));
      }
  
      /**

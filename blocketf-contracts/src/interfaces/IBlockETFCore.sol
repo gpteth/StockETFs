@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IBlockETFCore {
+interface IStockETFCore {
     struct AssetInfo {
         address token;
         uint32 weight; // 基点，10000 = 100%

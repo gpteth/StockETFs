@@ -9,10 +9,10 @@ import {Math} from "../math/Math.sol";
 
 /**
  * @dev This library defines the \`Trace*\` struct, for checkpointing values as they change at different points in
- * time, and later looking up past values by block number. See {Votes} as an example.
+ * time, and later looking up past values by Stock number. See {Votes} as an example.
  *
  * To create a history of checkpoints define a variable type \`Checkpoints.Trace*\` in your contract, and store a new
- * checkpoint for the current transaction block using the {push} function.
+ * checkpoint for the current transaction Stock using the {push} function.
  */
 `;
 

@@ -12,16 +12,16 @@ describe('Environment sanity', function () {
   });
 
   describe('snapshot', function () {
-    let blockNumberBefore;
+    let StockNumberBefore;
 
     it('cache and mine', async function () {
-      blockNumberBefore = await ethers.provider.getBlockNumber();
+      StockNumberBefore = await ethers.provider.getStockNumber();
       await mine();
-      expect(await ethers.provider.getBlockNumber()).to.equal(blockNumberBefore + 1);
+      expect(await ethers.provider.getStockNumber()).to.equal(StockNumberBefore + 1);
     });
 
     it('check snapshot', async function () {
-      expect(await ethers.provider.getBlockNumber()).to.equal(blockNumberBefore);
+      expect(await ethers.provider.getStockNumber()).to.equal(StockNumberBefore);
     });
   });
 });

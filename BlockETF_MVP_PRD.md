@@ -1,4 +1,4 @@
-# BlockETF - MVP产品需求文档
+# StockETF - MVP产品需求文档
 
 ## 1. MVP目标
 快速验证链上ETF的核心价值：让用户能够通过单一稳定币投资加密市场Top5代币组合。
@@ -73,7 +73,7 @@
 
 ### 4.1 智能合约（最简版）
 ```solidity
-contract BlockETF {
+contract StockETF {
     // 核心功能
     function deposit(uint256 usdtAmount) external returns (uint256 shares)
     function withdraw(uint256 shares) external returns (uint256 usdtAmount)

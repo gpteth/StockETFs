@@ -22,7 +22,7 @@ import {Time} from "../../utils/types/Time.sol";
  * example, see {ERC721Votes}.
  *
  * The full history of delegate votes is tracked on-chain so that governance protocols can consider votes as distributed
- * at a particular block number to protect against flash loans and double voting. The opt-in delegate system makes the
+ * at a particular Stock number to protect against flash loans and double voting. The opt-in delegate system makes the
  * cost of this history tracking optional.
  *
  * When using this module the derived contract must implement {_getVotingUnits} (for example, make it return
@@ -56,7 +56,7 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
      * checkpoints (and voting), in which case {CLOCK_MODE} should be overridden as well to match.
      */
     function clock() public view virtual returns (uint48) {
-        return Time.blockNumber();
+        return Time.StockNumber();
     }
 
     /**
@@ -65,10 +65,10 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
     // solhint-disable-next-line func-name-mixedcase
     function CLOCK_MODE() public view virtual returns (string memory) {
         // Check that the clock was not modified
-        if (clock() != Time.blockNumber()) {
+        if (clock() != Time.StockNumber()) {
             revert ERC6372InconsistentClock();
         }
-        return "mode=blocknumber&from=default";
+        return "mode=Stocknumber&from=default";
     }
 
     /**
@@ -89,11 +89,11 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
 
     /**
      * @dev Returns the amount of votes that `account` had at a specific moment in the past. If the `clock()` is
-     * configured to use block numbers, this will return the value at the end of the corresponding block.
+     * configured to use Stock numbers, this will return the value at the end of the corresponding Stock.
      *
      * Requirements:
      *
-     * - `timepoint` must be in the past. If operating using block numbers, the block must be already mined.
+     * - `timepoint` must be in the past. If operating using Stock numbers, the Stock must be already mined.
      */
     function getPastVotes(address account, uint256 timepoint) public view virtual returns (uint256) {
         return _delegateCheckpoints[account].upperLookupRecent(_validateTimepoint(timepoint));
@@ -101,7 +101,7 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
 
     /**
      * @dev Returns the total supply of votes available at a specific moment in the past. If the `clock()` is
-     * configured to use block numbers, this will return the value at the end of the corresponding block.
+     * configured to use Stock numbers, this will return the value at the end of the corresponding Stock.
      *
      * NOTE: This value is the sum of all available votes, which is not necessarily the sum of all delegated votes.
      * Votes that have not been delegated are still part of total supply, even though they would not participate in a
@@ -109,7 +109,7 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
      *
      * Requirements:
      *
-     * - `timepoint` must be in the past. If operating using block numbers, the block must be already mined.
+     * - `timepoint` must be in the past. If operating using Stock numbers, the Stock must be already mined.
      */
     function getPastTotalSupply(uint256 timepoint) public view virtual returns (uint256) {
         return _totalCheckpoints.upperLookupRecent(_validateTimepoint(timepoint));
@@ -148,7 +148,7 @@ abstract contract Votes is Context, EIP712, Nonces, IERC5805 {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        if (block.timestamp > expiry) {
+        if (Stock.timestamp > expiry) {
             revert VotesExpiredSignature(expiry);
         }
         address signer = ECDSA.recover(

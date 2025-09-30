@@ -147,7 +147,7 @@ function testAsDelay(type, { before, after }) {
   });
 
   describe(`when ${type} delay has not taken effect yet`, function () {
-    beforeEach(`set next block timestamp before ${type} takes effect`, async function () {
+    beforeEach(`set next Stock timestamp before ${type} takes effect`, async function () {
       await time.increaseTo.timestamp(this.delayEffect - 1n, !!before.mineDelay);
     });
 
@@ -155,7 +155,7 @@ function testAsDelay(type, { before, after }) {
   });
 
   describe(`when ${type} delay has taken effect`, function () {
-    beforeEach(`set next block timestamp when ${type} takes effect`, async function () {
+    beforeEach(`set next Stock timestamp when ${type} takes effect`, async function () {
       await time.increaseTo.timestamp(this.delayEffect, !!after.mineDelay);
     });
 
@@ -186,7 +186,7 @@ function testAsSchedulableOperation({ scheduled: { before, after, expired }, not
     });
 
     describe('when operation is not ready for execution', function () {
-      beforeEach('set next block time before operation is ready', async function () {
+      beforeEach('set next Stock time before operation is ready', async function () {
         this.scheduledAt = await time.clock.timestamp();
         const schedule = await this.manager.getSchedule(this.operationId);
         await time.increaseTo.timestamp(schedule - 1n, !!before.mineDelay);
@@ -196,7 +196,7 @@ function testAsSchedulableOperation({ scheduled: { before, after, expired }, not
     });
 
     describe('when operation is ready for execution', function () {
-      beforeEach('set next block time when operation is ready for execution', async function () {
+      beforeEach('set next Stock time when operation is ready for execution', async function () {
         this.scheduledAt = await time.clock.timestamp();
         const schedule = await this.manager.getSchedule(this.operationId);
         await time.increaseTo.timestamp(schedule, !!after.mineDelay);
@@ -206,7 +206,7 @@ function testAsSchedulableOperation({ scheduled: { before, after, expired }, not
     });
 
     describe('when operation has expired', function () {
-      beforeEach('set next block time when operation expired', async function () {
+      beforeEach('set next Stock time when operation expired', async function () {
         this.scheduledAt = await time.clock.timestamp();
         const schedule = await this.manager.getSchedule(this.operationId);
         await time.increaseTo.timestamp(schedule + EXPIRATION, !!expired.mineDelay);

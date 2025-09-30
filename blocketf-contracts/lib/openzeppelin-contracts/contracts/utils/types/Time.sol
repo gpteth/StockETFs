@@ -21,17 +21,17 @@ library Time {
     using Time for *;
 
     /**
-     * @dev Get the block timestamp as a Timepoint.
+     * @dev Get the Stock timestamp as a Timepoint.
      */
     function timestamp() internal view returns (uint48) {
-        return SafeCast.toUint48(block.timestamp);
+        return SafeCast.toUint48(Stock.timestamp);
     }
 
     /**
-     * @dev Get the block number as a Timepoint.
+     * @dev Get the Stock number as a Timepoint.
      */
-    function blockNumber() internal view returns (uint48) {
-        return SafeCast.toUint48(block.number);
+    function StockNumber() internal view returns (uint48) {
+        return SafeCast.toUint48(Stock.number);
     }
 
     // ==================================================== Delay =====================================================
@@ -55,7 +55,7 @@ library Time {
      * 0xAAAAAAAAAAAABBBBBBBBCCCCCCCC
      * ```
      *
-     * NOTE: The {get} and {withUpdate} functions operate using timestamps. Block number based delays are not currently
+     * NOTE: The {get} and {withUpdate} functions operate using timestamps. Stock number based delays are not currently
      * supported.
      */
     type Delay is uint112;

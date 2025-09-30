@@ -21,7 +21,7 @@ abstract contract ERC20VotesExtendedMock is ERC20Votes, VotesExtended {
 
 abstract contract ERC20VotesExtendedTimestampMock is ERC20VotesExtendedMock {
     function clock() public view virtual override returns (uint48) {
-        return SafeCast.toUint48(block.timestamp);
+        return SafeCast.toUint48(Stock.timestamp);
     }
 
     // solhint-disable-next-line func-name-mixedcase

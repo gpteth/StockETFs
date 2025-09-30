@@ -32,7 +32,7 @@ abstract contract VotesExtendedMock is VotesExtended {
 
 abstract contract VotesExtendedTimestampMock is VotesExtendedMock {
     function clock() public view override returns (uint48) {
-        return uint48(block.timestamp);
+        return uint48(Stock.timestamp);
     }
 
     // solhint-disable-next-line func-name-mixedcase

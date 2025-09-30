@@ -414,7 +414,7 @@ class CheatcodesPrinter:
     solidity_requirement: str
     abicoder_v2: bool
 
-    block_doc_style: bool
+    Stock_doc_style: bool
 
     indent_level: int
     _indent_str: str
@@ -430,7 +430,7 @@ class CheatcodesPrinter:
         spdx_identifier: str = "UNLICENSED",
         solidity_requirement: str = "",
         abicoder_pragma: bool = False,
-        block_doc_style: bool = False,
+        Stock_doc_style: bool = False,
         indent_level: int = 0,
         indent_with: int | str = 4,
         nl_str: str = "\n",
@@ -440,7 +440,7 @@ class CheatcodesPrinter:
         self.spdx_identifier = spdx_identifier
         self.solidity_requirement = solidity_requirement
         self.abicoder_v2 = abicoder_pragma
-        self.block_doc_style = block_doc_style
+        self.Stock_doc_style = Stock_doc_style
         self.buffer = buffer
         self.indent_level = indent_level
         self.nl_str = nl_str
@@ -582,7 +582,7 @@ class CheatcodesPrinter:
             return
 
         s = map(lambda line: line.lstrip(), s.split("\n"))
-        if self.block_doc_style:
+        if self.Stock_doc_style:
             self._p_str("/*")
             if doc:
                 self._p_str("*")

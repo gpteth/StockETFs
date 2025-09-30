@@ -19,7 +19,7 @@ function prepareOperation({ sender, target, value = 0n, data = '0x' }) {
 }
 
 const TOKENS = [
-  { Token: '$ERC20Votes', mode: 'blocknumber' },
+  { Token: '$ERC20Votes', mode: 'Stocknumber' },
   { Token: '$ERC20VotesTimestampMock', mode: 'timestamp' },
 ];
 

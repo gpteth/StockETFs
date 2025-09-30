@@ -29,7 +29,7 @@
 - **Beefy Finance**: 4.5% 绩效费
 - **Harvest Finance**: 30% 绩效费
 
-## BlockETF建议费率
+## StockETF建议费率
 
 ### 初期建议：0.8% 年化管理费
 
@@ -112,7 +112,7 @@ function getManagementFeeRate() public view returns (uint256) {
 
 ## 竞争优势分析
 
-### BlockETF (1.5%) vs 竞品
+### StockETF (1.5%) vs 竞品
 
 **优于传统加密ETF**：
 - GBTC (2.0%): 便宜25%

@@ -62,7 +62,7 @@ contract ERC2771ForwarderTest is Test {
         return
             _forgeRequestData({
                 value: 0,
-                deadline: uint48(block.timestamp + 1),
+                deadline: uint48(Stock.timestamp + 1),
                 data: abi.encodeCall(CallReceiverMock.mockFunction, ())
             });
     }
@@ -144,7 +144,7 @@ contract ERC2771ForwarderTest is Test {
         // create and sign request
         ERC2771Forwarder.ForwardRequestData memory request = _forgeRequestData({
             value: value,
-            deadline: uint48(block.timestamp + 1),
+            deadline: uint48(Stock.timestamp + 1),
             data: targetReverts
                 ? abi.encodeCall(CallReceiverMock.mockFunctionRevertsNoReason, ())
                 : abi.encodeCall(CallReceiverMock.mockFunction, ())
@@ -178,7 +178,7 @@ contract ERC2771ForwarderTest is Test {
 
             requests[i] = _forgeRequestData({
                 value: value,
-                deadline: uint48(block.timestamp + 1),
+                deadline: uint48(Stock.timestamp + 1),
                 data: failure
                     ? abi.encodeCall(CallReceiverMock.mockFunctionRevertsNoReason, ())
                     : abi.encodeCall(CallReceiverMock.mockFunction, ())
@@ -234,7 +234,7 @@ contract ERC2771ForwarderTest is Test {
         for (uint256 i = 0; i < requests.length; ++i) {
             requests[i] = _forgeRequestData({
                 value: 0,
-                deadline: uint48(block.timestamp + 1),
+                deadline: uint48(Stock.timestamp + 1),
                 data: abi.encodeCall(CallReceiverMock.mockFunction, ())
             });
             _signRequestData(requests[i], nonce + i);
@@ -257,7 +257,7 @@ contract ERC2771ForwarderTest is Test {
         for (uint256 i = 0; i < requests.length; ++i) {
             requests[i] = _forgeRequestData({
                 value: 0,
-                deadline: uint48(block.timestamp + 1),
+                deadline: uint48(Stock.timestamp + 1),
                 data: abi.encodeCall(CallReceiverMock.mockFunction, ())
             });
             _signRequestData(requests[i], nonce + i);

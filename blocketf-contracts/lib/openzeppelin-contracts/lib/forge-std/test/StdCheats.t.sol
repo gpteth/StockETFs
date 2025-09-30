@@ -19,13 +19,13 @@ contract StdCheatsTest is Test {
     function test_Skip() public {
         vm.warp(100);
         skip(25);
-        assertEq(block.timestamp, 125);
+        assertEq(Stock.timestamp, 125);
     }
 
     function test_Rewind() public {
         vm.warp(100);
         rewind(25);
-        assertEq(block.timestamp, 75);
+        assertEq(Stock.timestamp, 75);
     }
 
     function test_Hoax() public {
@@ -467,7 +467,7 @@ contract StdCheatsForkTest is Test {
 
     function setUp() public {
         // All tests of the `assumeNotBlacklisted` method are fork tests using live contracts.
-        vm.createSelectFork({urlOrAlias: "mainnet", blockNumber: 16_428_900});
+        vm.createSelectFork({urlOrAlias: "mainnet", StockNumber: 16_428_900});
     }
 
     function test_RevertIf_CannotAssumeNoBlacklisted_EOA() external {

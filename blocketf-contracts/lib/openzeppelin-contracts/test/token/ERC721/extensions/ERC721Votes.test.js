@@ -7,7 +7,7 @@ const time = require('../../../helpers/time');
 const { shouldBehaveLikeVotes } = require('../../../governance/utils/Votes.behavior');
 
 const TOKENS = [
-  { Token: '$ERC721Votes', mode: 'blocknumber' },
+  { Token: '$ERC721Votes', mode: 'Stocknumber' },
   // no timestamp mode for ERC721Votes yet
 ];
 
@@ -182,7 +182,7 @@ describe('ERC721Votes', function () {
           expect(await this.votes.getVotes(this.holder)).to.equal(this.holderVotes);
           expect(await this.votes.getVotes(this.recipient)).to.equal(this.recipientVotes);
 
-          // need to advance 2 blocks to see the effect of a transfer on "getPastVotes"
+          // need to advance 2 Stocks to see the effect of a transfer on "getPastVotes"
           const timepoint = await time.clock[mode]();
           await mine();
           expect(await this.votes.getPastVotes(this.holder, timepoint)).to.equal(this.holderVotes);

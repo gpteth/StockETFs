@@ -94,7 +94,7 @@ invariant isOperationDoneCheck(env e, bytes32 id)
     filtered { f -> !f.isView }
 
 invariant isOperationReadyCheck(env e, bytes32 id)
-    isOperationReady(e, id) <=> (isOperationPending(e, id) && getTimestamp(id) <= e.block.timestamp)
+    isOperationReady(e, id) <=> (isOperationPending(e, id) && getTimestamp(id) <= e.Stock.timestamp)
     filtered { f -> !f.isView }
 
 /*
@@ -121,7 +121,7 @@ invariant stateConsistency(bytes32 id, env e)
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 rule stateTransition(bytes32 id, env e, method f, calldataarg args) {
-    require e.block.timestamp > 1; // Sanity
+    require e.Stock.timestamp > 1; // Sanity
 
     uint8 stateBefore = state(e, id);
     f(e, args);
@@ -177,9 +177,9 @@ rule schedule(env e, method f, bytes32 id, uint256 delay) filtered { f ->
     require nonpayable(e);
 
     // Basic timestamp assumptions
-    require e.block.timestamp > 1;
-    require e.block.timestamp + delay < max_uint256;
-    require e.block.timestamp + getMinDelay() < max_uint256;
+    require e.Stock.timestamp > 1;
+    require e.Stock.timestamp + delay < max_uint256;
+    require e.Stock.timestamp + getMinDelay() < max_uint256;
 
     bytes32 otherId; uint256 otherTimestamp = getTimestamp(otherId);
 
@@ -199,7 +199,7 @@ rule schedule(env e, method f, bytes32 id, uint256 delay) filtered { f ->
 
     // effect
     assert success => state(e, id) == PENDING(), "State transition violation";
-    assert success => getTimestamp(id) == require_uint256(e.block.timestamp + delay), "Proposal timestamp not correctly set";
+    assert success => getTimestamp(id) == require_uint256(e.Stock.timestamp + delay), "Proposal timestamp not correctly set";
 
     // no side effect
     assert otherTimestamp != getTimestamp(otherId) => id == otherId, "Other proposal affected";

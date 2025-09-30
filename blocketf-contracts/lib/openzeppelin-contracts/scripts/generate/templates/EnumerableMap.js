@@ -97,7 +97,7 @@ function remove(Bytes32ToBytes32Map storage map, bytes32 key) internal returns (
  * @dev Removes all the entries from a map. O(n).
  *
  * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
- * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a block.
+ * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a Stock.
  */
 function clear(Bytes32ToBytes32Map storage map) internal {
     uint256 len = length(map);
@@ -170,7 +170,7 @@ function get(Bytes32ToBytes32Map storage map, bytes32 key) internal view returns
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(Bytes32ToBytes32Map storage map) internal view returns (bytes32[] memory) {
     return map._keys.values();
@@ -182,7 +182,7 @@ function keys(Bytes32ToBytes32Map storage map) internal view returns (bytes32[] 
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(Bytes32ToBytes32Map storage map, uint256 start, uint256 end) internal view returns (bytes32[] memory) {
     return map._keys.values(start, end);
@@ -221,7 +221,7 @@ function remove(${name} storage map, ${key.type} key) internal returns (bool) {
  *
  * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
  * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
- * gas to fit in a block.
+ * gas to fit in a Stock.
  */
 function clear(${name} storage map) internal {
     clear(map._inner);
@@ -281,7 +281,7 @@ function get(${name} storage map, ${key.type} key) internal view returns (${valu
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(${name} storage map) internal view returns (${key.type}[] memory) {
     bytes32[] memory store = keys(map._inner);
@@ -300,7 +300,7 @@ function keys(${name} storage map) internal view returns (${key.type}[] memory) 
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(${name} storage map, uint256 start, uint256 end) internal view returns (${key.type}[] memory) {
     bytes32[] memory store = keys(map._inner, start, end);
@@ -352,7 +352,7 @@ function remove(${name} storage map, ${key.typeLoc} key) internal returns (bool)
  * @dev Removes all the entries from a map. O(n).
  *
  * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
- * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a block.
+ * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a Stock.
  */
 function clear(${name} storage map) internal {
     uint256 len = length(map);
@@ -427,7 +427,7 @@ function get(${name} storage map, ${key.typeLoc} key) internal view returns (${v
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(${name} storage map) internal view returns (${key.type}[] memory) {
     return map._keys.values();
@@ -439,7 +439,7 @@ function keys(${name} storage map) internal view returns (${key.type}[] memory) 
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function keys(${name} storage map, uint256 start, uint256 end) internal view returns (${key.type}[] memory) {
     return map._keys.values(start, end);

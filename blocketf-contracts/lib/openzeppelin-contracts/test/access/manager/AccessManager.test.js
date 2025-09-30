@@ -1831,7 +1831,7 @@ describe('AccessManager', function () {
           callerIsNotTheManager: {
             publicRoleIsRequired() {
               it('reverts as AccessManagerUnauthorizedCall', async function () {
-                // prepareOperation is not used here because it alters the next block timestamp
+                // prepareOperation is not used here because it alters the next Stock timestamp
                 await expect(this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48))
                   .to.be.revertedWithCustomError(this.manager, 'AccessManagerUnauthorizedCall')
                   .withArgs(this.caller, this.target, this.calldata.substring(0, 10));
@@ -1843,7 +1843,7 @@ describe('AccessManager', function () {
                   callerHasAnExecutionDelay: {
                     beforeGrantDelay() {
                       it('reverts as AccessManagerUnauthorizedCall', async function () {
-                        // prepareOperation is not used here because it alters the next block timestamp
+                        // prepareOperation is not used here because it alters the next Stock timestamp
                         await expect(this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48))
                           .to.be.revertedWithCustomError(this.manager, 'AccessManagerUnauthorizedCall')
                           .withArgs(this.caller, this.target, this.calldata.substring(0, 10));
@@ -1851,7 +1851,7 @@ describe('AccessManager', function () {
                     },
                     afterGrantDelay() {
                       it('succeeds', async function () {
-                        // prepareOperation is not used here because it alters the next block timestamp
+                        // prepareOperation is not used here because it alters the next Stock timestamp
                         await this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48);
                       });
                     },
@@ -1859,7 +1859,7 @@ describe('AccessManager', function () {
                   callerHasNoExecutionDelay: {
                     beforeGrantDelay() {
                       it('reverts as AccessManagerUnauthorizedCall', async function () {
-                        // prepareOperation is not used here because it alters the next block timestamp
+                        // prepareOperation is not used here because it alters the next Stock timestamp
                         await expect(this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48))
                           .to.be.revertedWithCustomError(this.manager, 'AccessManagerUnauthorizedCall')
                           .withArgs(this.caller, this.target, this.calldata.substring(0, 10));
@@ -1867,7 +1867,7 @@ describe('AccessManager', function () {
                     },
                     afterGrantDelay() {
                       it('reverts as AccessManagerUnauthorizedCall', async function () {
-                        // prepareOperation is not used here because it alters the next block timestamp
+                        // prepareOperation is not used here because it alters the next Stock timestamp
                         await expect(this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48))
                           .to.be.revertedWithCustomError(this.manager, 'AccessManagerUnauthorizedCall')
                           .withArgs(this.caller, this.target, this.calldata.substring(0, 10));
@@ -1890,7 +1890,7 @@ describe('AccessManager', function () {
                   },
                   callerHasNoExecutionDelay() {
                     it('reverts as AccessManagerUnauthorizedCall', async function () {
-                      // prepareOperation is not used here because it alters the next block timestamp
+                      // prepareOperation is not used here because it alters the next Stock timestamp
                       await expect(this.manager.connect(this.caller).schedule(this.target, this.calldata, MAX_UINT48))
                         .to.be.revertedWithCustomError(this.manager, 'AccessManagerUnauthorizedCall')
                         .withArgs(this.caller, this.target, this.calldata.substring(0, 10));

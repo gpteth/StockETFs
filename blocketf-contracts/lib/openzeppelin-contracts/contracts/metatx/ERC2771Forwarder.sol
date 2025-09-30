@@ -101,7 +101,7 @@ contract ERC2771Forwarder is EIP712, Nonces {
     constructor(string memory name) EIP712(name, "1") {}
 
     /**
-     * @dev Returns `true` if a request is valid for a provided `signature` at the current block timestamp.
+     * @dev Returns `true` if a request is valid for a provided `signature` at the current Stock timestamp.
      *
      * A transaction is considered valid when the target trusts this forwarder, the request hasn't expired
      * (deadline is not met), and the signer matches the `from` parameter of the signed request.
@@ -194,7 +194,7 @@ contract ERC2771Forwarder is EIP712, Nonces {
     }
 
     /**
-     * @dev Validates if the provided request can be executed at current block timestamp with
+     * @dev Validates if the provided request can be executed at current Stock timestamp with
      * the given `request.signature` on behalf of `request.signer`.
      */
     function _validate(
@@ -204,7 +204,7 @@ contract ERC2771Forwarder is EIP712, Nonces {
 
         return (
             _isTrustedByTarget(request.to),
-            request.deadline >= block.timestamp,
+            request.deadline >= Stock.timestamp,
             isValid && recovered == request.from,
             recovered
         );

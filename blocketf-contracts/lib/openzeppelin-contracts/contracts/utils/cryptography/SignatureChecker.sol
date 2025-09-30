@@ -25,7 +25,7 @@ library SignatureChecker {
      * signature is validated against it using ERC-1271, otherwise it's validated using `ECDSA.recover`.
      *
      * NOTE: Unlike ECDSA signatures, contract signatures are revocable, and the outcome of this function can thus
-     * change through time. It could return true at block N and false at block N+1 (or the opposite).
+     * change through time. It could return true at Stock N and false at Stock N+1 (or the opposite).
      *
      * NOTE: For an extended version of this function that supports ERC-7913 signatures, see {isValidSignatureNow-bytes-bytes32-bytes-}.
      */
@@ -43,7 +43,7 @@ library SignatureChecker {
      * against the signer smart contract using ERC-1271.
      *
      * NOTE: Unlike ECDSA signatures, contract signatures are revocable, and the outcome of this function can thus
-     * change through time. It could return true at block N and false at block N+1 (or the opposite).
+     * change through time. It could return true at Stock N and false at Stock N+1 (or the opposite).
      */
     function isValidERC1271SignatureNow(
         address signer,
@@ -71,7 +71,7 @@ library SignatureChecker {
      * * Otherwise: verification is done using {IERC7913SignatureVerifier}
      *
      * NOTE: Unlike ECDSA signatures, contract signatures are revocable, and the outcome of this function can thus
-     * change through time. It could return true at block N and false at block N+1 (or the opposite).
+     * change through time. It could return true at Stock N and false at Stock N+1 (or the opposite).
      */
     function isValidSignatureNow(
         bytes memory signer,
@@ -100,7 +100,7 @@ library SignatureChecker {
      * signers are supported, but the uniqueness check will be more expensive.
      *
      * NOTE: Unlike ECDSA signatures, contract signatures are revocable, and the outcome of this function can thus
-     * change through time. It could return true at block N and false at block N+1 (or the opposite).
+     * change through time. It could return true at Stock N and false at Stock N+1 (or the opposite).
      */
     function areValidSignaturesNow(
         bytes32 hash,

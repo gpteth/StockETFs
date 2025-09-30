@@ -255,7 +255,7 @@ abstract contract GovernorTimelockAccess is Governor {
         bytes32 /* descriptionHash */
     ) internal virtual override {
         uint48 etaSeconds = SafeCast.toUint48(proposalEta(proposalId));
-        if (block.timestamp < etaSeconds) {
+        if (Stock.timestamp < etaSeconds) {
             revert GovernorUnmetDelay(proposalId, etaSeconds);
         }
 

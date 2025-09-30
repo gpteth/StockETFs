@@ -1,4 +1,4 @@
-# BlockETF 管理费实现方案
+# StockETF 管理费实现方案
 
 ## 推荐方案：连续计提法（Continuous Accrual）
 
@@ -8,7 +8,7 @@
 ### 实现代码
 
 ```solidity
-contract BlockETF {
+contract StockETF {
     uint256 public constant MANAGEMENT_FEE_RATE = 200; // 2% 年化费率 (basis points)
     uint256 public lastFeeCollection;
     address public feeRecipient;
@@ -21,11 +21,11 @@ contract BlockETF {
 
     function _collectManagementFee() internal {
         if (lastFeeCollection == 0) {
-            lastFeeCollection = block.timestamp;
+            lastFeeCollection = Stock.timestamp;
             return;
         }
 
-        uint256 timePassed = block.timestamp - lastFeeCollection;
+        uint256 timePassed = Stock.timestamp - lastFeeCollection;
         if (timePassed == 0) return;
 
         uint256 totalSupply = TOP5Token.totalSupply();
@@ -45,7 +45,7 @@ contract BlockETF {
             emit ManagementFeeCollected(feeShares, timePassed);
         }
 
-        lastFeeCollection = block.timestamp;
+        lastFeeCollection = Stock.timestamp;
     }
 
     // 申购函数
@@ -89,7 +89,7 @@ contract BlockETF {
 #### 1. 首次部署
 ```solidity
 constructor() {
-    lastFeeCollection = block.timestamp;
+    lastFeeCollection = Stock.timestamp;
     feeRecipient = msg.sender; // 初始设为部署者
 }
 ```
@@ -145,7 +145,7 @@ function displayFees() {
 ### 审计要点
 
 1. **精度问题**：使用高精度计算避免舍入误差
-2. **时间操纵**：依赖block.timestamp，但影响极小
+2. **时间操纵**：依赖Stock.timestamp，但影响极小
 3. **份额膨胀**：长期运行会增加总份额，但不影响比例
 4. **零份额保护**：当totalSupply为0时跳过计算
 
@@ -173,7 +173,7 @@ function withdraw(uint256 shares) external returns (uint256) {
 
 ## 总结
 
-连续计提法是最适合BlockETF的管理费收取方式：
+连续计提法是最适合StockETF的管理费收取方式：
 - ✅ 实现简单
 - ✅ 公平透明
 - ✅ Gas效率高

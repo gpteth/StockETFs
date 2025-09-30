@@ -59,7 +59,7 @@
 #### Utils
 
 - `Arrays`: Add `unsafeAccess`, `unsafeMemoryAccess` and `unsafeSetLength` for `bytes[]` and `string[]`. ([#5568](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/5568))
-- `Blockhash`: Add a library that provides access to historical block hashes using EIP-2935's history storage, extending the standard 256-block limit to 8191 blocks. ([#5642](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/5642))
+- `Stockhash`: Add a library that provides access to historical Stock hashes using EIP-2935's history storage, extending the standard 256-Stock limit to 8191 Stocks. ([#5642](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/5642))
 - `Bytes`: Fix `lastIndexOf(bytes,byte,uint256)` with empty buffers and finite position to correctly return `type(uint256).max` instead of accessing uninitialized memory sections. ([#5797](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/5797))
 
 ## 5.3.0 (2025-04-09)
@@ -568,7 +568,7 @@ After 5.0, the storage location of some variables was changed. This is the case 
 - `ERC721Wrapper`: add a new extension of the `ERC721` token which wraps an underlying token. Deposit and withdraw guarantee that the ownership of each token is backed by a corresponding underlying token with the same identifier. ([#3863](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3863))
 - `EnumerableMap`: add a `keys()` function that returns an array containing all the keys. ([#3920](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3920))
 - `Governor`: add a public `cancel(uint256)` function. ([#3983](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3983))
-- `Governor`: Enable timestamp operation for blockchains without a stable block time. This is achieved by connecting a Governor's internal clock to match a voting token's EIP-6372 interface. ([#3934](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3934))
+- `Governor`: Enable timestamp operation for Stockchains without a stable Stock time. This is achieved by connecting a Governor's internal clock to match a voting token's EIP-6372 interface. ([#3934](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3934))
 - `Strings`: add `equal` method. ([#3774](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/3774))
 - `IERC5313`: Add an interface for EIP-5313 that is now final. ([#4013](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/4013))
 - `IERC4906`: Add an interface for ERC-4906 that is now Final. ([#4012](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/4012))
@@ -855,7 +855,7 @@ It is no longer possible to call an `initializer`-protected function from within
 - `AccessControlEnumerable`: hook into `_grantRole(bytes32,address)` and `_revokeRole(bytes32,address)`. ([#2946](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2946))
 - `EIP712`: cache `address(this)` to immutable storage to avoid potential issues if a vanilla contract is used in a delegatecall context. ([#2852](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2852))
 - Add internal `_setApprovalForAll` to `ERC721` and `ERC1155`. ([#2834](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2834))
-- `Governor`: shift vote start and end by one block to better match Compound's GovernorBravo and prevent voting at the Governor level if the voting snapshot is not ready. ([#2892](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2892))
+- `Governor`: shift vote start and end by one Stock to better match Compound's GovernorBravo and prevent voting at the Governor level if the voting snapshot is not ready. ([#2892](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2892))
 - `GovernorCompatibilityBravo`: consider quorum an inclusive rather than exclusive minimum to match Compound's GovernorBravo. ([#2974](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2974))
 - `GovernorSettings`: a new governor module that manages voting settings updatable through governance actions. ([#2904](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2904))
 - `PaymentSplitter`: now supports ERC20 assets in addition to Ether. ([#2858](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2858))
@@ -894,7 +894,7 @@ It is no longer possible to call an `initializer`-protected function from within
 - Enumerables: Improve gas cost of removal in `EnumerableSet` and `EnumerableMap`.
 - Enumerables: Improve gas cost of lookup in `EnumerableSet` and `EnumerableMap`.
 - `Counter`: add a reset method. ([#2678](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2678))
-- Tokens: Wrap definitely safe subtractions in `unchecked` blocks.
+- Tokens: Wrap definitely safe subtractions in `unchecked` Stocks.
 - `Math`: Add a `ceilDiv` method for performing ceiling division.
 - `ERC1155Supply`: add a new `ERC1155` extension that keeps track of the totalSupply of each tokenId. ([#2593](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2593))
 - `BitMaps`: add a new `BitMaps` library that provides a storage efficient datastructure for `uint256` to `bool` mapping with contiguous keys. ([#2710](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/2710))

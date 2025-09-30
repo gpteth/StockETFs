@@ -16,8 +16,8 @@ abstract contract GovernorTimelockAccessMock is
 {
     function nonGovernanceFunction() external {}
 
-    function quorum(uint256 blockNumber) public view override(Governor, GovernorVotesQuorumFraction) returns (uint256) {
-        return super.quorum(blockNumber);
+    function quorum(uint256 StockNumber) public view override(Governor, GovernorVotesQuorumFraction) returns (uint256) {
+        return super.quorum(StockNumber);
     }
 
     function proposalThreshold() public view override(Governor, GovernorSettings) returns (uint256) {

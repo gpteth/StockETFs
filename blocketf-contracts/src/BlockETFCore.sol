@@ -7,13 +7,13 @@ import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import "./interfaces/IBlockETFCore.sol";
+import "./interfaces/IStockETFCore.sol";
 import "./interfaces/IPriceOracle.sol";
 import "./interfaces/IRebalanceCallback.sol";
 import "./libraries/Errors.sol";
 
-contract BlockETFCore is
-    IBlockETFCore,
+contract StockETFCore is
+    IStockETFCore,
     ERC20,
     Ownable,
     Pausable,
@@ -101,7 +101,7 @@ contract BlockETFCore is
         // Mint remaining initial supply to the caller
         _mint(msg.sender, _initialSupply - MINIMUM_LIQUIDITY);
 
-        feeInfo.lastCollectTime = block.timestamp;
+        feeInfo.lastCollectTime = Stock.timestamp;
         initialized = true;
 
         emit AssetConfigured(_assets, _weights);
@@ -433,12 +433,12 @@ contract BlockETFCore is
     function _collectManagementFee() internal returns (uint256 feeShares) {
         if (
             feeInfo.managementFeeRate == 0 ||
-            block.timestamp <= feeInfo.lastCollectTime
+            Stock.timestamp <= feeInfo.lastCollectTime
         ) {
             return 0;
         }
 
-        uint256 elapsed = block.timestamp - feeInfo.lastCollectTime;
+        uint256 elapsed = Stock.timestamp - feeInfo.lastCollectTime;
         uint256 totalValue = getTotalValue();
 
         if (totalValue > 0 && totalSupply() > 0) {
@@ -464,7 +464,7 @@ contract BlockETFCore is
             }
         }
 
-        feeInfo.lastCollectTime = block.timestamp;
+        feeInfo.lastCollectTime = Stock.timestamp;
     }
 
     function setFeeCollector(address _feeCollector) external onlyOwner {

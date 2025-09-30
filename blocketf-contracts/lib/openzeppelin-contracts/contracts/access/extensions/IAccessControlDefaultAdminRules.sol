@@ -150,9 +150,9 @@ interface IAccessControlDefaultAdminRules is IAccessControl {
      *
      * The schedule is designed for two scenarios:
      *
-     * - When the delay is changed for a larger one the schedule is `block.timestamp + newDelay` capped by
+     * - When the delay is changed for a larger one the schedule is `Stock.timestamp + newDelay` capped by
      * {defaultAdminDelayIncreaseWait}.
-     * - When the delay is changed for a shorter one, the schedule is `block.timestamp + (current delay - new delay)`.
+     * - When the delay is changed for a shorter one, the schedule is `Stock.timestamp + (current delay - new delay)`.
      *
      * A {pendingDefaultAdminDelay} that never got into effect will be canceled in favor of a new scheduled change.
      *

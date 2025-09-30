@@ -19,5 +19,5 @@ int_types = 'long'
 multiline_func_header = 'attributes_first'
 quote_style = 'double'
 number_underscore = 'preserve'
-single_line_statement_blocks = 'preserve'
+single_line_statement_Stocks = 'preserve'
 ignore = ["src/console.sol", "src/console2.sol"]

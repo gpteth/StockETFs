@@ -132,7 +132,7 @@ function _remove(Set storage set, bytes32 value) private returns (bool) {
  *
  * WARNING: This function has an unbounded cost that scales with set size. Developers should keep in mind that
  * using it may render the function uncallable if the set grows to the point where clearing it consumes too much
- * gas to fit in a block.
+ * gas to fit in a Stock.
  */
 function _clear(Set storage set) private {
     uint256 len = _length(set);
@@ -176,7 +176,7 @@ function _at(Set storage set, uint256 index) private view returns (bytes32) {
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function _values(Set storage set) private view returns (bytes32[] memory) {
     return set._values;
@@ -188,7 +188,7 @@ function _values(Set storage set) private view returns (bytes32[] memory) {
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function _values(Set storage set, uint256 start, uint256 end) private view returns (bytes32[] memory) {
     unchecked {
@@ -237,7 +237,7 @@ function remove(${name} storage set, ${type} value) internal returns (bool) {
  * @dev Removes all the values from a set. O(n).
  *
  * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
- * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+ * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
  */
 function clear(${name} storage set) internal {
     _clear(set._inner);
@@ -277,7 +277,7 @@ function at(${name} storage set, uint256 index) internal view returns (${type}) 
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function values(${name} storage set) internal view returns (${type}[] memory) {
     bytes32[] memory store = _values(set._inner);
@@ -296,7 +296,7 @@ function values(${name} storage set) internal view returns (${type}[] memory) {
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function values(${name} storage set, uint256 start, uint256 end) internal view returns (${type}[] memory) {
     bytes32[] memory store = _values(set._inner, start, end);
@@ -381,7 +381,7 @@ function remove(${name} storage set, ${value.type} memory value) internal return
  * @dev Removes all the values from a set. O(n).
  *
  * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
- * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+ * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
  */
 function clear(${name} storage set) internal {
     uint256 len = length(set);
@@ -425,7 +425,7 @@ function at(${name} storage set, uint256 index) internal view returns (${value.t
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function values(${name} storage set) internal view returns (${value.type}[] memory) {
     return set._values;
@@ -437,7 +437,7 @@ function values(${name} storage set) internal view returns (${value.type}[] memo
  * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
  * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
  * this function has an unbounded cost, and using it as part of a state-changing function may render the function
- * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+ * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
  */
 function values(${name} storage set, uint256 start, uint256 end) internal view returns (${value.type}[] memory) {
     unchecked {

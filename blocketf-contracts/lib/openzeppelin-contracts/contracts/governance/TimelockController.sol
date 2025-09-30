@@ -209,7 +209,7 @@ contract TimelockController is AccessControl, ERC721Holder, ERC1155Holder {
             return OperationState.Unset;
         } else if (timestamp == _DONE_TIMESTAMP) {
             return OperationState.Done;
-        } else if (timestamp > block.timestamp) {
+        } else if (timestamp > Stock.timestamp) {
             return OperationState.Waiting;
         } else {
             return OperationState.Ready;
@@ -320,7 +320,7 @@ contract TimelockController is AccessControl, ERC721Holder, ERC1155Holder {
         if (delay < minDelay) {
             revert TimelockInsufficientDelay(delay, minDelay);
         }
-        _timestamps[id] = block.timestamp + delay;
+        _timestamps[id] = Stock.timestamp + delay;
     }
 
     /**

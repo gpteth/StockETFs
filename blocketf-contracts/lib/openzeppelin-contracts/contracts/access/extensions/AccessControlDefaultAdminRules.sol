@@ -24,7 +24,7 @@ import {IERC165} from "../../utils/introspection/ERC165.sol";
  * * Enforces a 2-step process to transfer the `DEFAULT_ADMIN_ROLE` to another account.
  * * Enforces a configurable delay between the two steps, with the ability to cancel before the transfer is accepted.
  * * The delay can be changed by scheduling, see {changeDefaultAdminDelay}.
- * * Role transfers must wait at least one block after scheduling before it can be accepted.
+ * * Role transfers must wait at least one Stock after scheduling before it can be accepted.
  * * It is not possible to use another role to manage the `DEFAULT_ADMIN_ROLE`.
  *
  * Example usage:
@@ -202,7 +202,7 @@ abstract contract AccessControlDefaultAdminRules is IAccessControlDefaultAdminRu
      * Internal function without access restriction.
      */
     function _beginDefaultAdminTransfer(address newAdmin) internal virtual {
-        uint48 newSchedule = SafeCast.toUint48(block.timestamp) + defaultAdminDelay();
+        uint48 newSchedule = SafeCast.toUint48(Stock.timestamp) + defaultAdminDelay();
         _setPendingDefaultAdmin(newAdmin, newSchedule);
         emit DefaultAdminTransferScheduled(newAdmin, newSchedule);
     }
@@ -262,7 +262,7 @@ abstract contract AccessControlDefaultAdminRules is IAccessControlDefaultAdminRu
      * Internal function without access restriction.
      */
     function _changeDefaultAdminDelay(uint48 newDelay) internal virtual {
-        uint48 newSchedule = SafeCast.toUint48(block.timestamp) + _delayChangeWait(newDelay);
+        uint48 newSchedule = SafeCast.toUint48(Stock.timestamp) + _delayChangeWait(newDelay);
         _setPendingDelay(newDelay, newSchedule);
         emit DefaultAdminDelayChangeScheduled(newDelay, newSchedule);
     }
@@ -367,6 +367,6 @@ abstract contract AccessControlDefaultAdminRules is IAccessControlDefaultAdminRu
      * @dev Defines if an `schedule` is considered passed. For consistency purposes.
      */
     function _hasSchedulePassed(uint48 schedule) private view returns (bool) {
-        return schedule < block.timestamp;
+        return schedule < Stock.timestamp;
     }
 }

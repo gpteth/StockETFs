@@ -8,5 +8,5 @@ definition min(mathint a, mathint b) returns mathint = a < b ? a : b;
 definition max(mathint a, mathint b) returns mathint = a > b ? a : b;
 
 // time
-definition clock(env e) returns mathint = to_mathint(e.block.timestamp);
+definition clock(env e) returns mathint = to_mathint(e.Stock.timestamp);
 definition isSetAndPast(env e, uint48 timepoint) returns bool = timepoint != 0 && to_mathint(timepoint) <= clock(e);

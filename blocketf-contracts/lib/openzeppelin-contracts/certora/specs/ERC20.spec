@@ -343,7 +343,7 @@ rule permit(env e) {
         assert to_mathint(nonces(holder)) == nonceBefore + 1;
 
         // deadline was respected
-        assert deadline >= e.block.timestamp;
+        assert deadline >= e.Stock.timestamp;
 
         // no other allowance or nonce is modified
         assert nonces(account1)              != otherNonceBefore     => account1 == holder;

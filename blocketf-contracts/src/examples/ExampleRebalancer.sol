@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "../interfaces/IRebalanceCallback.sol";
-import "../interfaces/IBlockETFCore.sol";
+import "../interfaces/IStockETFCore.sol";
 import "../interfaces/IPancakeRouter.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -18,7 +18,7 @@ contract ExampleRebalancer is IRebalanceCallback {
     function executeRebalance() external {
         // Call flash rebalance on ETF - amounts are calculated automatically
         bytes memory data = abi.encode(msg.sender);
-        IBlockETFCore(etf).flashRebalance(address(this), data);
+        IStockETFCore(etf).flashRebalance(address(this), data);
     }
 
     function rebalanceCallback(
@@ -50,7 +50,7 @@ contract ExampleRebalancer is IRebalanceCallback {
                 //     0, // Accept any amount of USDT
                 //     path,
                 //     address(this),
-                //     block.timestamp + 300
+                //     Stock.timestamp + 300
                 // );
 
                 // For demo, just keep the asset
@@ -73,7 +73,7 @@ contract ExampleRebalancer is IRebalanceCallback {
                 //     type(uint256).max, // Pay any amount of USDT
                 //     path,
                 //     address(this),
-                //     block.timestamp + 300
+                //     Stock.timestamp + 300
                 // );
 
                 // For demo, simulate buying

@@ -105,7 +105,7 @@ function shouldBehaveLikeERC6909() {
         await this.token.$_mint(this.holder, secondTokenId, secondTokenSupply);
       });
 
-      it('transfers to the zero address are blocked', async function () {
+      it('transfers to the zero address are Stocked', async function () {
         await expect(this.token.connect(this.holder).transfer(ethers.ZeroAddress, firstTokenId, firstTokenSupply))
           .to.be.revertedWithCustomError(this.token, 'ERC6909InvalidReceiver')
           .withArgs(ethers.ZeroAddress);

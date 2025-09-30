@@ -29,7 +29,7 @@ abstract contract AccessControlEnumerable is IAccessControlEnumerable, AccessCon
      * change at any point.
      *
      * WARNING: When using {getRoleMember} and {getRoleMemberCount}, make sure
-     * you perform all queries on the same block. See the following
+     * you perform all queries on the same Stock. See the following
      * https://forum.openzeppelin.com/t/iterating-over-elements-on-enumerableset-in-openzeppelin-contracts/2296[forum post]
      * for more information.
      */
@@ -51,7 +51,7 @@ abstract contract AccessControlEnumerable is IAccessControlEnumerable, AccessCon
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function getRoleMembers(bytes32 role) public view virtual returns (address[] memory) {
         return _roleMembers[role].values();

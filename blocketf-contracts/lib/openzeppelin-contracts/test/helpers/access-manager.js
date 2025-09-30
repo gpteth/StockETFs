@@ -54,7 +54,7 @@ const CONSUMING_SCHEDULE_STORAGE_SLOT = upgradeableSlot('AccessManaged', 0n);
  */
 async function prepareOperation(manager, { caller, target, calldata, delay }) {
   const scheduledAt = (await time.clock.timestamp()) + 1n;
-  await time.increaseTo.timestamp(scheduledAt, false); // Fix next block timestamp for predictability
+  await time.increaseTo.timestamp(scheduledAt, false); // Fix next Stock timestamp for predictability
 
   return {
     schedule: () => manager.connect(caller).schedule(target, calldata, scheduledAt + delay),

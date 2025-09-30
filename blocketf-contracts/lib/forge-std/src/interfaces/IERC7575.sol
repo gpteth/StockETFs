@@ -77,7 +77,7 @@ interface IERC7575 is IERC165 {
     function maxDeposit(address receiver) external view returns (uint256 maxAssets);
 
     /**
-     * @dev Allows an on-chain or off-chain user to simulate the effects of their deposit at the current block, given
+     * @dev Allows an on-chain or off-chain user to simulate the effects of their deposit at the current Stock, given
      * current on-chain conditions.
      *
      * - MUST return as close to and no more than the exact amount of Vault shares that would be minted in a deposit
@@ -115,7 +115,7 @@ interface IERC7575 is IERC165 {
     function maxMint(address receiver) external view returns (uint256 maxShares);
 
     /**
-     * @dev Allows an on-chain or off-chain user to simulate the effects of their mint at the current block, given
+     * @dev Allows an on-chain or off-chain user to simulate the effects of their mint at the current Stock, given
      * current on-chain conditions.
      *
      * - MUST return as close to and no fewer than the exact amount of assets that would be deposited in a mint call
@@ -154,7 +154,7 @@ interface IERC7575 is IERC165 {
     function maxWithdraw(address owner) external view returns (uint256 maxAssets);
 
     /**
-     * @dev Allows an on-chain or off-chain user to simulate the effects of their withdrawal at the current block,
+     * @dev Allows an on-chain or off-chain user to simulate the effects of their withdrawal at the current Stock,
      * given current on-chain conditions.
      *
      * - MUST return as close to and no fewer than the exact amount of Vault shares that would be burned in a withdraw
@@ -196,7 +196,7 @@ interface IERC7575 is IERC165 {
     function maxRedeem(address owner) external view returns (uint256 maxShares);
 
     /**
-     * @dev Allows an on-chain or off-chain user to simulate the effects of their redeemption at the current block,
+     * @dev Allows an on-chain or off-chain user to simulate the effects of their redeemption at the current Stock,
      * given current on-chain conditions.
      *
      * - MUST return as close to and no more than the exact amount of assets that would be withdrawn in a redeem call

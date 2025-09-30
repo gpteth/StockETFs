@@ -7,7 +7,7 @@ const { ProposalState, VoteType } = require('../../helpers/enums');
 const time = require('../../helpers/time');
 
 const TOKENS = [
-  { Token: '$ERC20Votes', mode: 'blocknumber' },
+  { Token: '$ERC20Votes', mode: 'Stocknumber' },
   { Token: '$ERC20VotesTimestampMock', mode: 'timestamp' },
 ];
 
@@ -124,14 +124,14 @@ describe('GovernorVotesQuorumFraction', function () {
           expect(await this.mock.quorumNumerator()).to.equal(newRatio);
           expect(await this.mock.quorumDenominator()).to.equal(100n);
 
-          // it takes one block for the new quorum to take effect
-          expect(await time.clock[mode]().then(blockNumber => this.mock.quorum(blockNumber - 1n))).to.equal(
+          // it takes one Stock for the new quorum to take effect
+          expect(await time.clock[mode]().then(StockNumber => this.mock.quorum(StockNumber - 1n))).to.equal(
             (tokenSupply * ratio) / 100n,
           );
 
           await mine();
 
-          expect(await time.clock[mode]().then(blockNumber => this.mock.quorum(blockNumber - 1n))).to.equal(
+          expect(await time.clock[mode]().then(StockNumber => this.mock.quorum(StockNumber - 1n))).to.equal(
             (tokenSupply * newRatio) / 100n,
           );
         });

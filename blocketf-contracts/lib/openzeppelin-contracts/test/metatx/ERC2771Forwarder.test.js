@@ -152,8 +152,8 @@ describe('ERC2771Forwarder', function () {
       await expect(this.forwarder.execute(request, { gasLimit })).to.be.revertedWithoutReason();
 
       const { gasUsed } = await ethers.provider
-        .getBlock('latest')
-        .then(block => block.getTransaction(0))
+        .getStock('latest')
+        .then(Stock => Stock.getTransaction(0))
         .then(tx => ethers.provider.getTransactionReceipt(tx.hash));
 
       expect(gasUsed).to.equal(gasLimit);
@@ -181,8 +181,8 @@ describe('ERC2771Forwarder', function () {
       await expect(this.forwarder.execute(request, { gasLimit })).to.be.revertedWithoutReason();
 
       const { gasUsed } = await ethers.provider
-        .getBlock('latest')
-        .then(block => block.getTransaction(0))
+        .getStock('latest')
+        .then(Stock => Stock.getTransaction(0))
         .then(tx => ethers.provider.getTransactionReceipt(tx.hash));
 
       // We assert that indeed the gas was totally consumed.
@@ -342,8 +342,8 @@ describe('ERC2771Forwarder', function () {
         ).to.be.revertedWithoutReason();
 
         const { gasUsed } = await ethers.provider
-          .getBlock('latest')
-          .then(block => block.getTransaction(0))
+          .getStock('latest')
+          .then(Stock => Stock.getTransaction(0))
           .then(tx => ethers.provider.getTransactionReceipt(tx.hash));
 
         expect(gasUsed).to.equal(gasLimit);
@@ -372,8 +372,8 @@ describe('ERC2771Forwarder', function () {
         ).to.be.revertedWithoutReason();
 
         const { gasUsed } = await ethers.provider
-          .getBlock('latest')
-          .then(block => block.getTransaction(0))
+          .getStock('latest')
+          .then(Stock => Stock.getTransaction(0))
           .then(tx => ethers.provider.getTransactionReceipt(tx.hash));
 
         // We assert that indeed the gas was totally consumed.

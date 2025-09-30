@@ -807,7 +807,7 @@ abstract contract Governor is Context, ERC165, EIP712, Nonces, IGovernor, IERC72
      * @dev Reads a bytes32 from a bytes array without bounds checking.
      *
      * NOTE: making this function internal would mean it could be used with memory unsafe offset, and marking the
-     * assembly block as such would prevent some optimizations.
+     * assembly Stock as such would prevent some optimizations.
      */
     function _unsafeReadBytesOffset(bytes memory buffer, uint256 offset) private pure returns (bytes32 value) {
         // This is not memory safe in the general case, but all calls to this private function are within bounds.

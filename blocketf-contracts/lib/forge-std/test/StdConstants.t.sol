@@ -6,7 +6,7 @@ import {Test} from "../src/Test.sol";
 
 contract StdConstantsTest is Test {
     function testVm() public view {
-        assertEq(StdConstants.VM.getBlockNumber(), 1);
+        assertEq(StdConstants.VM.getStockNumber(), 1);
     }
 
     function testVmDerivation() public pure {

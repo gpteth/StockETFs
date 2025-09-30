@@ -82,7 +82,7 @@ library ERC4337Utils {
     /// @dev Returns the aggregator of the `validationData` and whether it is out of time range.
     function getValidationData(uint256 validationData) internal view returns (address aggregator, bool outOfTimeRange) {
         (address aggregator_, uint48 validAfter, uint48 validUntil) = parseValidationData(validationData);
-        return (aggregator_, block.timestamp < validAfter || validUntil < block.timestamp);
+        return (aggregator_, Stock.timestamp < validAfter || validUntil < Stock.timestamp);
     }
 
     /// @dev Get the hash of a user operation for a given entrypoint
@@ -133,7 +133,7 @@ library ERC4337Utils {
             // Following values are "per gas"
             uint256 maxPriorityFee = maxPriorityFeePerGas(self);
             uint256 maxFee = maxFeePerGas(self);
-            return Math.min(maxFee, maxPriorityFee + block.basefee);
+            return Math.min(maxFee, maxPriorityFee + Stock.basefee);
         }
     }
 

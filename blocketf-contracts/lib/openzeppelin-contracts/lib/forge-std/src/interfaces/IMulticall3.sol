@@ -30,44 +30,44 @@ interface IMulticall3 {
     function aggregate(Call[] calldata calls)
         external
         payable
-        returns (uint256 blockNumber, bytes[] memory returnData);
+        returns (uint256 StockNumber, bytes[] memory returnData);
 
     function aggregate3(Call3[] calldata calls) external payable returns (Result[] memory returnData);
 
     function aggregate3Value(Call3Value[] calldata calls) external payable returns (Result[] memory returnData);
 
-    function blockAndAggregate(Call[] calldata calls)
+    function StockAndAggregate(Call[] calldata calls)
         external
         payable
-        returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
+        returns (uint256 StockNumber, bytes32 StockHash, Result[] memory returnData);
 
     function getBasefee() external view returns (uint256 basefee);
 
-    function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockHash);
+    function getStockHash(uint256 StockNumber) external view returns (bytes32 StockHash);
 
-    function getBlockNumber() external view returns (uint256 blockNumber);
+    function getStockNumber() external view returns (uint256 StockNumber);
 
     function getChainId() external view returns (uint256 chainid);
 
-    function getCurrentBlockCoinbase() external view returns (address coinbase);
+    function getCurrentStockCoinbase() external view returns (address coinbase);
 
-    function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
+    function getCurrentStockDifficulty() external view returns (uint256 difficulty);
 
-    function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
+    function getCurrentStockGasLimit() external view returns (uint256 gaslimit);
 
-    function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
+    function getCurrentStockTimestamp() external view returns (uint256 timestamp);
 
     function getEthBalance(address addr) external view returns (uint256 balance);
 
-    function getLastBlockHash() external view returns (bytes32 blockHash);
+    function getLastStockHash() external view returns (bytes32 StockHash);
 
     function tryAggregate(bool requireSuccess, Call[] calldata calls)
         external
         payable
         returns (Result[] memory returnData);
 
-    function tryBlockAndAggregate(bool requireSuccess, Call[] calldata calls)
+    function tryStockAndAggregate(bool requireSuccess, Call[] calldata calls)
         external
         payable
-        returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
+        returns (uint256 StockNumber, bytes32 StockHash, Result[] memory returnData);
 }

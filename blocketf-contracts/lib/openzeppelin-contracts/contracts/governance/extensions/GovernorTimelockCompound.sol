@@ -41,7 +41,7 @@ abstract contract GovernorTimelockCompound is Governor {
 
         return
             (currentState == ProposalState.Queued &&
-                block.timestamp >= proposalEta(proposalId) + _timelock.GRACE_PERIOD())
+                Stock.timestamp >= proposalEta(proposalId) + _timelock.GRACE_PERIOD())
                 ? ProposalState.Expired
                 : currentState;
     }
@@ -68,7 +68,7 @@ abstract contract GovernorTimelockCompound is Governor {
         bytes[] memory calldatas,
         bytes32 /*descriptionHash*/
     ) internal virtual override returns (uint48) {
-        uint48 etaSeconds = SafeCast.toUint48(block.timestamp + _timelock.delay());
+        uint48 etaSeconds = SafeCast.toUint48(Stock.timestamp + _timelock.delay());
 
         for (uint256 i = 0; i < targets.length; ++i) {
             if (

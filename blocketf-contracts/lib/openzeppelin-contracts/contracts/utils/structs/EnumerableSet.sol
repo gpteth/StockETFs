@@ -128,7 +128,7 @@ library EnumerableSet {
      *
      * WARNING: This function has an unbounded cost that scales with set size. Developers should keep in mind that
      * using it may render the function uncallable if the set grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function _clear(Set storage set) private {
         uint256 len = _length(set);
@@ -172,7 +172,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function _values(Set storage set) private view returns (bytes32[] memory) {
         return set._values;
@@ -184,7 +184,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function _values(Set storage set, uint256 start, uint256 end) private view returns (bytes32[] memory) {
         unchecked {
@@ -230,7 +230,7 @@ library EnumerableSet {
      * @dev Removes all the values from a set. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(Bytes32Set storage set) internal {
         _clear(set._inner);
@@ -270,7 +270,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(Bytes32Set storage set) internal view returns (bytes32[] memory) {
         bytes32[] memory store = _values(set._inner);
@@ -289,7 +289,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(Bytes32Set storage set, uint256 start, uint256 end) internal view returns (bytes32[] memory) {
         bytes32[] memory store = _values(set._inner, start, end);
@@ -332,7 +332,7 @@ library EnumerableSet {
      * @dev Removes all the values from a set. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(AddressSet storage set) internal {
         _clear(set._inner);
@@ -372,7 +372,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(AddressSet storage set) internal view returns (address[] memory) {
         bytes32[] memory store = _values(set._inner);
@@ -391,7 +391,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(AddressSet storage set, uint256 start, uint256 end) internal view returns (address[] memory) {
         bytes32[] memory store = _values(set._inner, start, end);
@@ -434,7 +434,7 @@ library EnumerableSet {
      * @dev Removes all the values from a set. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(UintSet storage set) internal {
         _clear(set._inner);
@@ -474,7 +474,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(UintSet storage set) internal view returns (uint256[] memory) {
         bytes32[] memory store = _values(set._inner);
@@ -493,7 +493,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(UintSet storage set, uint256 start, uint256 end) internal view returns (uint256[] memory) {
         bytes32[] memory store = _values(set._inner, start, end);
@@ -576,7 +576,7 @@ library EnumerableSet {
      * @dev Removes all the values from a set. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(StringSet storage set) internal {
         uint256 len = length(set);
@@ -620,7 +620,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(StringSet storage set) internal view returns (string[] memory) {
         return set._values;
@@ -632,7 +632,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(StringSet storage set, uint256 start, uint256 end) internal view returns (string[] memory) {
         unchecked {
@@ -718,7 +718,7 @@ library EnumerableSet {
      * @dev Removes all the values from a set. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the set grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(BytesSet storage set) internal {
         uint256 len = length(set);
@@ -762,7 +762,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(BytesSet storage set) internal view returns (bytes[] memory) {
         return set._values;
@@ -774,7 +774,7 @@ library EnumerableSet {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function values(BytesSet storage set, uint256 start, uint256 end) internal view returns (bytes[] memory) {
         unchecked {

@@ -71,7 +71,7 @@ abstract contract EIP712 is IERC5267 {
         _hashedName = keccak256(bytes(name));
         _hashedVersion = keccak256(bytes(version));
 
-        _cachedChainId = block.chainid;
+        _cachedChainId = Stock.chainid;
         _cachedDomainSeparator = _buildDomainSeparator();
         _cachedThis = address(this);
     }
@@ -80,7 +80,7 @@ abstract contract EIP712 is IERC5267 {
      * @dev Returns the domain separator for the current chain.
      */
     function _domainSeparatorV4() internal view returns (bytes32) {
-        if (address(this) == _cachedThis && block.chainid == _cachedChainId) {
+        if (address(this) == _cachedThis && Stock.chainid == _cachedChainId) {
             return _cachedDomainSeparator;
         } else {
             return _buildDomainSeparator();
@@ -88,7 +88,7 @@ abstract contract EIP712 is IERC5267 {
     }
 
     function _buildDomainSeparator() private view returns (bytes32) {
-        return keccak256(abi.encode(TYPE_HASH, _hashedName, _hashedVersion, block.chainid, address(this)));
+        return keccak256(abi.encode(TYPE_HASH, _hashedName, _hashedVersion, Stock.chainid, address(this)));
     }
 
     /**
@@ -129,7 +129,7 @@ abstract contract EIP712 is IERC5267 {
             hex"0f", // 01111
             _EIP712Name(),
             _EIP712Version(),
-            block.chainid,
+            Stock.chainid,
             address(this),
             bytes32(0),
             new uint256[](0)

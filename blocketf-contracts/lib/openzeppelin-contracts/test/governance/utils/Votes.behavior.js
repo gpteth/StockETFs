@@ -7,7 +7,7 @@ const time = require('../../helpers/time');
 
 const { shouldBehaveLikeERC6372 } = require('./ERC6372.behavior');
 
-function shouldBehaveLikeVotes(tokens, { mode = 'blocknumber', fungible = true }) {
+function shouldBehaveLikeVotes(tokens, { mode = 'Stocknumber', fungible = true }) {
   beforeEach(async function () {
     [this.delegator, this.delegatee, this.alice, this.bob, this.other] = this.accounts;
     this.domain = await getDomain(this.votes);
@@ -216,7 +216,7 @@ function shouldBehaveLikeVotes(tokens, { mode = 'blocknumber', fungible = true }
         await this.votes.connect(this.alice).delegate(this.alice);
       });
 
-      it('reverts if block number >= current block', async function () {
+      it('reverts if Stock number >= current Stock', async function () {
         const timepoint = 5e10;
         const clock = await this.votes.clock();
         await expect(this.votes.getPastTotalSupply(timepoint))
@@ -285,7 +285,7 @@ function shouldBehaveLikeVotes(tokens, { mode = 'blocknumber', fungible = true }
       });
 
       describe('getPastVotes', function () {
-        it('reverts if block number >= current block', async function () {
+        it('reverts if Stock number >= current Stock', async function () {
           const clock = await this.votes.clock();
           const timepoint = 5e10; // far in the future
           await expect(this.votes.getPastVotes(this.bob, timepoint))
@@ -297,7 +297,7 @@ function shouldBehaveLikeVotes(tokens, { mode = 'blocknumber', fungible = true }
           expect(await this.votes.getPastVotes(this.bob, 0n)).to.equal(0n);
         });
 
-        it('returns the latest block if >= last checkpoint block', async function () {
+        it('returns the latest Stock if >= last checkpoint Stock', async function () {
           const delegate = await this.votes.connect(this.alice).delegate(this.bob);
           const timepoint = await time.clockFromReceipt[mode](delegate);
           await mine(2);
@@ -307,7 +307,7 @@ function shouldBehaveLikeVotes(tokens, { mode = 'blocknumber', fungible = true }
           expect(await this.votes.getPastVotes(this.bob, timepoint + 1n)).to.equal(latest);
         });
 
-        it('returns zero if < first checkpoint block', async function () {
+        it('returns zero if < first checkpoint Stock', async function () {
           await mine();
           const delegate = await this.votes.connect(this.alice).delegate(this.bob);
           const timepoint = await time.clockFromReceipt[mode](delegate);

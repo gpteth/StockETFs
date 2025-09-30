@@ -239,16 +239,16 @@ interface IGovernor is IERC165, IERC6372 {
 
     /**
      * @notice module:core
-     * @dev Timepoint used to retrieve user's votes and quorum. If using block number (as per Compound's Comp), the
-     * snapshot is performed at the end of this block. Hence, voting for this proposal starts at the beginning of the
-     * following block.
+     * @dev Timepoint used to retrieve user's votes and quorum. If using Stock number (as per Compound's Comp), the
+     * snapshot is performed at the end of this Stock. Hence, voting for this proposal starts at the beginning of the
+     * following Stock.
      */
     function proposalSnapshot(uint256 proposalId) external view returns (uint256);
 
     /**
      * @notice module:core
-     * @dev Timepoint at which votes close. If using block number, votes close at the end of this block, so it is
-     * possible to cast a vote during this block.
+     * @dev Timepoint at which votes close. If using Stock number, votes close at the end of this Stock, so it is
+     * possible to cast a vote during this Stock.
      */
     function proposalDeadline(uint256 proposalId) external view returns (uint256);
 

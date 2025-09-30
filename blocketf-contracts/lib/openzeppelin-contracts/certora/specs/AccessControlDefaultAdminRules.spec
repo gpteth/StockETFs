@@ -13,22 +13,22 @@ use rule onlyGrantCanGrant filtered {
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 definition timeSanity(env e) returns bool =
-  e.block.timestamp > 0 && e.block.timestamp + defaultAdminDelay(e) < max_uint48;
+  e.Stock.timestamp > 0 && e.Stock.timestamp + defaultAdminDelay(e) < max_uint48;
 
 definition delayChangeWaitSanity(env e, uint48 newDelay) returns bool =
-  e.block.timestamp + delayChangeWait_(e, newDelay) < max_uint48;
+  e.Stock.timestamp + delayChangeWait_(e, newDelay) < max_uint48;
 
 definition isSet(uint48 schedule) returns bool =
   schedule != 0;
 
 definition hasPassed(env e, uint48 schedule) returns bool =
-  assert_uint256(schedule) < e.block.timestamp;
+  assert_uint256(schedule) < e.Stock.timestamp;
 
 definition increasingDelaySchedule(env e, uint48 newDelay) returns mathint =
-  e.block.timestamp + min(newDelay, defaultAdminDelayIncreaseWait());
+  e.Stock.timestamp + min(newDelay, defaultAdminDelayIncreaseWait());
 
 definition decreasingDelaySchedule(env e, uint48 newDelay) returns mathint =
-  e.block.timestamp + defaultAdminDelay(e) - newDelay;
+  e.Stock.timestamp + defaultAdminDelay(e) - newDelay;
 
 /*
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -282,7 +282,7 @@ rule beginDefaultAdminTransfer(env e, address newAdmin) {
   // effect
   assert success => pendingDefaultAdmin_() == newAdmin,
     "pending default admin is set";
-  assert success => to_mathint(pendingDefaultAdminSchedule_()) == e.block.timestamp + defaultAdminDelay(e),
+  assert success => to_mathint(pendingDefaultAdminSchedule_()) == e.Stock.timestamp + defaultAdminDelay(e),
     "pending default admin delay is set";
 }
 
@@ -292,7 +292,7 @@ rule beginDefaultAdminTransfer(env e, address newAdmin) {
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 rule pendingDefaultAdminDelayEnforced(env e1, env e2, method f, calldataarg args, address newAdmin) {
-  require e1.block.timestamp <= e2.block.timestamp;
+  require e1.Stock.timestamp <= e2.Stock.timestamp;
 
   uint48 delayBefore = defaultAdminDelay(e1);
   address adminBefore = defaultAdmin();
@@ -307,7 +307,7 @@ rule pendingDefaultAdminDelayEnforced(env e1, env e2, method f, calldataarg args
   // change can only happen towards the newAdmin, with the delay
   assert adminAfter != adminBefore => (
     adminAfter == newAdmin &&
-    to_mathint(e2.block.timestamp) >= e1.block.timestamp + delayBefore
+    to_mathint(e2.Stock.timestamp) >= e1.Stock.timestamp + delayBefore
   ),
     "The admin can only change after the enforced delay and to the previously scheduled new admin";
 }
@@ -393,7 +393,7 @@ rule changeDefaultAdminDelay(env e, uint48 newDelay) {
     "pending delay is set";
 
   assert success => (
-    assert_uint256(pendingDelaySchedule_(e)) > e.block.timestamp ||
+    assert_uint256(pendingDelaySchedule_(e)) > e.Stock.timestamp ||
     delayBefore == newDelay || // Interpreted as decreasing, x - x = 0
     defaultAdminDelayIncreaseWait() == 0
   ),
@@ -406,7 +406,7 @@ rule changeDefaultAdminDelay(env e, uint48 newDelay) {
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 rule pendingDelayWaitEnforced(env e1, env e2, method f, calldataarg args, uint48 newDelay) {
-  require e1.block.timestamp <= e2.block.timestamp;
+  require e1.Stock.timestamp <= e2.Stock.timestamp;
 
   uint48 delayBefore = defaultAdminDelay(e1);
 
@@ -419,7 +419,7 @@ rule pendingDelayWaitEnforced(env e1, env e2, method f, calldataarg args, uint48
 
   assert delayAfter != delayBefore => (
     delayAfter == newDelay &&
-    to_mathint(e2.block.timestamp) >= delayWait
+    to_mathint(e2.Stock.timestamp) >= delayWait
   ),
     "A delay can only change after the applied schedule";
 }

@@ -40,11 +40,11 @@ abstract contract VotesExtended is Votes {
 
     /**
      * @dev Returns the delegate of an `account` at a specific moment in the past. If the `clock()` is
-     * configured to use block numbers, this will return the value at the end of the corresponding block.
+     * configured to use Stock numbers, this will return the value at the end of the corresponding Stock.
      *
      * Requirements:
      *
-     * - `timepoint` must be in the past. If operating using block numbers, the block must be already mined.
+     * - `timepoint` must be in the past. If operating using Stock numbers, the Stock must be already mined.
      */
     function getPastDelegate(address account, uint256 timepoint) public view virtual returns (address) {
         return address(_userDelegationCheckpoints[account].upperLookupRecent(_validateTimepoint(timepoint)));
@@ -52,11 +52,11 @@ abstract contract VotesExtended is Votes {
 
     /**
      * @dev Returns the `balanceOf` of an `account` at a specific moment in the past. If the `clock()` is
-     * configured to use block numbers, this will return the value at the end of the corresponding block.
+     * configured to use Stock numbers, this will return the value at the end of the corresponding Stock.
      *
      * Requirements:
      *
-     * - `timepoint` must be in the past. If operating using block numbers, the block must be already mined.
+     * - `timepoint` must be in the past. If operating using Stock numbers, the Stock must be already mined.
      */
     function getPastBalanceOf(address account, uint256 timepoint) public view virtual returns (uint256) {
         return _userVotingUnitsCheckpoints[account].upperLookupRecent(_validateTimepoint(timepoint));

@@ -18,7 +18,7 @@ import {SafeCast} from "../../utils/math/SafeCast.sol";
  *
  * WARNING: Setting up the TimelockController to have additional proposers or cancelers besides the governor is very
  * risky, as it grants them the ability to: 1) execute operations as the timelock, and thus possibly performing
- * operations or accessing funds that are expected to only be accessible through a vote, and 2) block governance
+ * operations or accessing funds that are expected to only be accessible through a vote, and 2) Stock governance
  * proposals that have been approved by the voters, effectively executing a Denial of Service attack.
  */
 abstract contract GovernorTimelockControl is Governor {
@@ -87,7 +87,7 @@ abstract contract GovernorTimelockControl is Governor {
         _timelockIds[proposalId] = _timelock.hashOperationBatch(targets, values, calldatas, 0, salt);
         _timelock.scheduleBatch(targets, values, calldatas, 0, salt, delay);
 
-        return SafeCast.toUint48(block.timestamp + delay);
+        return SafeCast.toUint48(Stock.timestamp + delay);
     }
 
     /**

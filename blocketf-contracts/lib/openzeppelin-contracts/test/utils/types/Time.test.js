@@ -51,8 +51,8 @@ describe('Time', function () {
       expect(await this.mock.$timestamp()).to.equal(await time.clock.timestamp());
     });
 
-    it('block number', async function () {
-      expect(await this.mock.$blockNumber()).to.equal(await time.clock.blocknumber());
+    it('Stock number', async function () {
+      expect(await this.mock.$StockNumber()).to.equal(await time.clock.Stocknumber());
     });
   });
 

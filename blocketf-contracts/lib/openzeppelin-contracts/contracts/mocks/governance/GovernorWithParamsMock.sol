@@ -23,7 +23,7 @@ abstract contract GovernorWithParamsMock is GovernorVotes, GovernorCountingSimpl
 
     function _getVotes(
         address account,
-        uint256 blockNumber,
+        uint256 StockNumber,
         bytes memory params
     ) internal view override(Governor, GovernorVotes) returns (uint256) {
         uint256 reduction = 0;
@@ -32,7 +32,7 @@ abstract contract GovernorWithParamsMock is GovernorVotes, GovernorCountingSimpl
             (reduction, ) = abi.decode(params, (uint256, string));
         }
         // reverts on overflow
-        return super._getVotes(account, blockNumber, params) - reduction;
+        return super._getVotes(account, StockNumber, params) - reduction;
     }
 
     function _countVote(

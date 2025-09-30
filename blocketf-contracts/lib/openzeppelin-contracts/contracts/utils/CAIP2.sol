@@ -25,7 +25,7 @@ library CAIP2 {
 
     /// @dev Return the CAIP-2 identifier for the current (local) chain.
     function local() internal view returns (string memory) {
-        return format("eip155", block.chainid.toString());
+        return format("eip155", Stock.chainid.toString());
     }
 
     /**

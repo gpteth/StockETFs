@@ -108,8 +108,8 @@ contract CompTimelock {
     ) public returns (bytes32) {
         require(msg.sender == admin, "Timelock::queueTransaction: Call must come from admin.");
         require(
-            eta >= getBlockTimestamp() + delay,
-            "Timelock::queueTransaction: Estimated execution block must satisfy delay."
+            eta >= getStockTimestamp() + delay,
+            "Timelock::queueTransaction: Estimated execution Stock must satisfy delay."
         );
 
         bytes32 txHash = keccak256(abi.encode(target, value, signature, data, eta));
@@ -145,8 +145,8 @@ contract CompTimelock {
 
         bytes32 txHash = keccak256(abi.encode(target, value, signature, data, eta));
         require(queuedTransactions[txHash], "Timelock::executeTransaction: Transaction hasn't been queued.");
-        require(getBlockTimestamp() >= eta, "Timelock::executeTransaction: Transaction hasn't surpassed time lock.");
-        require(getBlockTimestamp() <= eta + GRACE_PERIOD, "Timelock::executeTransaction: Transaction is stale.");
+        require(getStockTimestamp() >= eta, "Timelock::executeTransaction: Transaction hasn't surpassed time lock.");
+        require(getStockTimestamp() <= eta + GRACE_PERIOD, "Timelock::executeTransaction: Transaction is stale.");
 
         queuedTransactions[txHash] = false;
 
@@ -167,8 +167,8 @@ contract CompTimelock {
         return returnData;
     }
 
-    function getBlockTimestamp() internal view returns (uint256) {
-        // solium-disable-next-line security/no-block-members
-        return block.timestamp;
+    function getStockTimestamp() internal view returns (uint256) {
+        // solium-disable-next-line security/no-Stock-members
+        return Stock.timestamp;
     }
 }

@@ -59,7 +59,7 @@ interface IERC4626 is IERC20 {
     /// - MUST NOT revert.
     function maxDeposit(address receiver) external view returns (uint256 maxAssets);
 
-    /// @notice Allows an on-chain or off-chain user to simulate the effects of their deposit at the current block, given
+    /// @notice Allows an on-chain or off-chain user to simulate the effects of their deposit at the current Stock, given
     /// current on-chain conditions.
     /// @dev
     /// - MUST return as close to and no more than the exact amount of Vault shares that would be minted in a deposit
@@ -92,7 +92,7 @@ interface IERC4626 is IERC20 {
     /// - MUST NOT revert.
     function maxMint(address receiver) external view returns (uint256 maxShares);
 
-    /// @notice Allows an on-chain or off-chain user to simulate the effects of their mint at the current block, given
+    /// @notice Allows an on-chain or off-chain user to simulate the effects of their mint at the current Stock, given
     /// current on-chain conditions.
     /// @dev
     /// - MUST return as close to and no fewer than the exact amount of assets that would be deposited in a mint call
@@ -125,7 +125,7 @@ interface IERC4626 is IERC20 {
     /// - MUST NOT revert.
     function maxWithdraw(address owner) external view returns (uint256 maxAssets);
 
-    /// @notice Allows an on-chain or off-chain user to simulate the effects of their withdrawal at the current block,
+    /// @notice Allows an on-chain or off-chain user to simulate the effects of their withdrawal at the current Stock,
     /// given current on-chain conditions.
     /// @dev
     /// - MUST return as close to and no fewer than the exact amount of Vault shares that would be burned in a withdraw
@@ -161,7 +161,7 @@ interface IERC4626 is IERC20 {
     /// - MUST NOT revert.
     function maxRedeem(address owner) external view returns (uint256 maxShares);
 
-    /// @notice Allows an on-chain or off-chain user to simulate the effects of their redeemption at the current block,
+    /// @notice Allows an on-chain or off-chain user to simulate the effects of their redeemption at the current Stock,
     /// given current on-chain conditions.
     /// @dev
     /// - MUST return as close to and no more than the exact amount of assets that would be withdrawn in a redeem call

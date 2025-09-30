@@ -106,8 +106,8 @@ abstract contract StdCheatsSafe {
     // and then converted to the one that is used by the user for better UX.
 
     struct RawReceipt {
-        bytes32 blockHash;
-        bytes blockNumber;
+        bytes32 StockHash;
+        bytes StockNumber;
         address contractAddress;
         bytes cumulativeGasUsed;
         bytes effectiveGasPrice;
@@ -122,8 +122,8 @@ abstract contract StdCheatsSafe {
     }
 
     struct Receipt {
-        bytes32 blockHash;
-        uint256 blockNumber;
+        bytes32 StockHash;
+        uint256 StockNumber;
         address contractAddress;
         uint256 cumulativeGasUsed;
         uint256 effectiveGasPrice;
@@ -163,8 +163,8 @@ abstract contract StdCheatsSafe {
     struct RawReceiptLog {
         // json value = address
         address logAddress;
-        bytes32 blockHash;
-        bytes blockNumber;
+        bytes32 StockHash;
+        bytes StockNumber;
         bytes data;
         bytes logIndex;
         bool removed;
@@ -177,8 +177,8 @@ abstract contract StdCheatsSafe {
     struct ReceiptLog {
         // json value = address
         address logAddress;
-        bytes32 blockHash;
-        uint256 blockNumber;
+        bytes32 StockHash;
+        uint256 StockNumber;
         bytes data;
         uint256 logIndex;
         bytes32[] topics;
@@ -459,7 +459,7 @@ abstract contract StdCheatsSafe {
 
     function rawToConvertedReceipt(RawReceipt memory rawReceipt) internal pure virtual returns (Receipt memory) {
         Receipt memory receipt;
-        receipt.blockHash = rawReceipt.blockHash;
+        receipt.StockHash = rawReceipt.StockHash;
         receipt.to = rawReceipt.to;
         receipt.from = rawReceipt.from;
         receipt.contractAddress = rawReceipt.contractAddress;
@@ -468,7 +468,7 @@ abstract contract StdCheatsSafe {
         receipt.gasUsed = _bytesToUint(rawReceipt.gasUsed);
         receipt.status = _bytesToUint(rawReceipt.status);
         receipt.transactionIndex = _bytesToUint(rawReceipt.transactionIndex);
-        receipt.blockNumber = _bytesToUint(rawReceipt.blockNumber);
+        receipt.StockNumber = _bytesToUint(rawReceipt.StockNumber);
         receipt.logs = rawToConvertedReceiptLogs(rawReceipt.logs);
         receipt.logsBloom = rawReceipt.logsBloom;
         receipt.transactionHash = rawReceipt.transactionHash;
@@ -484,8 +484,8 @@ abstract contract StdCheatsSafe {
         ReceiptLog[] memory logs = new ReceiptLog[](rawLogs.length);
         for (uint256 i; i < rawLogs.length; i++) {
             logs[i].logAddress = rawLogs[i].logAddress;
-            logs[i].blockHash = rawLogs[i].blockHash;
-            logs[i].blockNumber = _bytesToUint(rawLogs[i].blockNumber);
+            logs[i].StockHash = rawLogs[i].StockHash;
+            logs[i].StockNumber = _bytesToUint(rawLogs[i].StockNumber);
             logs[i].data = rawLogs[i].data;
             logs[i].logIndex = _bytesToUint(rawLogs[i].logIndex);
             logs[i].topics = rawLogs[i].topics;
@@ -629,7 +629,7 @@ abstract contract StdCheatsSafe {
     // can't simply access the chain ID in a normal view or pure function because the solc View Pure
     // Checker changed `chainid` from pure to view in 0.8.0.
     function _viewChainId() private view returns (uint256 chainId) {
-        // Assembly required since `block.chainid` was introduced in 0.8.0.
+        // Assembly required since `Stock.chainid` was introduced in 0.8.0.
         assembly {
             chainId := chainid()
         }
@@ -657,11 +657,11 @@ abstract contract StdCheats is StdCheatsSafe {
 
     // Skip forward or rewind time by the specified number of seconds
     function skip(uint256 time) internal virtual {
-        vm.warp(vm.getBlockTimestamp() + time);
+        vm.warp(vm.getStockTimestamp() + time);
     }
 
     function rewind(uint256 time) internal virtual {
-        vm.warp(vm.getBlockTimestamp() - time);
+        vm.warp(vm.getStockTimestamp() - time);
     }
 
     // Setup a prank from an address that has some ether

@@ -96,7 +96,7 @@ library EnumerableMap {
      * @dev Removes all the entries from a map. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(Bytes32ToBytes32Map storage map) internal {
         uint256 len = length(map);
@@ -169,7 +169,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(Bytes32ToBytes32Map storage map) internal view returns (bytes32[] memory) {
         return map._keys.values();
@@ -181,7 +181,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(
         Bytes32ToBytes32Map storage map,
@@ -222,7 +222,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(UintToUintMap storage map) internal {
         clear(map._inner);
@@ -282,7 +282,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToUintMap storage map) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -301,7 +301,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToUintMap storage map, uint256 start, uint256 end) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner, start, end);
@@ -345,7 +345,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(UintToAddressMap storage map) internal {
         clear(map._inner);
@@ -405,7 +405,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToAddressMap storage map) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -424,7 +424,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToAddressMap storage map, uint256 start, uint256 end) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner, start, end);
@@ -468,7 +468,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(UintToBytes32Map storage map) internal {
         clear(map._inner);
@@ -528,7 +528,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToBytes32Map storage map) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -547,7 +547,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(UintToBytes32Map storage map, uint256 start, uint256 end) internal view returns (uint256[] memory) {
         bytes32[] memory store = keys(map._inner, start, end);
@@ -591,7 +591,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(AddressToUintMap storage map) internal {
         clear(map._inner);
@@ -651,7 +651,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(AddressToUintMap storage map) internal view returns (address[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -670,7 +670,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(AddressToUintMap storage map, uint256 start, uint256 end) internal view returns (address[] memory) {
         bytes32[] memory store = keys(map._inner, start, end);
@@ -714,7 +714,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(AddressToAddressMap storage map) internal {
         clear(map._inner);
@@ -774,7 +774,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(AddressToAddressMap storage map) internal view returns (address[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -793,7 +793,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(
         AddressToAddressMap storage map,
@@ -841,7 +841,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(AddressToBytes32Map storage map) internal {
         clear(map._inner);
@@ -901,7 +901,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(AddressToBytes32Map storage map) internal view returns (address[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -920,7 +920,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(
         AddressToBytes32Map storage map,
@@ -968,7 +968,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(Bytes32ToUintMap storage map) internal {
         clear(map._inner);
@@ -1028,7 +1028,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(Bytes32ToUintMap storage map) internal view returns (bytes32[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -1047,7 +1047,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(Bytes32ToUintMap storage map, uint256 start, uint256 end) internal view returns (bytes32[] memory) {
         bytes32[] memory store = keys(map._inner, start, end);
@@ -1091,7 +1091,7 @@ library EnumerableMap {
      *
      * WARNING: This function has an unbounded cost that scales with map size. Developers should keep in mind that
      * using it may render the function uncallable if the map grows to the point where clearing it consumes too much
-     * gas to fit in a block.
+     * gas to fit in a Stock.
      */
     function clear(Bytes32ToAddressMap storage map) internal {
         clear(map._inner);
@@ -1151,7 +1151,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(Bytes32ToAddressMap storage map) internal view returns (bytes32[] memory) {
         bytes32[] memory store = keys(map._inner);
@@ -1170,7 +1170,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(
         Bytes32ToAddressMap storage map,
@@ -1224,7 +1224,7 @@ library EnumerableMap {
      * @dev Removes all the entries from a map. O(n).
      *
      * WARNING: Developers should keep in mind that this function has an unbounded cost and using it may render the
-     * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a block.
+     * function uncallable if the map grows to the point where clearing it consumes too much gas to fit in a Stock.
      */
     function clear(BytesToBytesMap storage map) internal {
         uint256 len = length(map);
@@ -1299,7 +1299,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(BytesToBytesMap storage map) internal view returns (bytes[] memory) {
         return map._keys.values();
@@ -1311,7 +1311,7 @@ library EnumerableMap {
      * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed
      * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that
      * this function has an unbounded cost, and using it as part of a state-changing function may render the function
-     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.
+     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a Stock.
      */
     function keys(BytesToBytesMap storage map, uint256 start, uint256 end) internal view returns (bytes[] memory) {
         return map._keys.values(start, end);
